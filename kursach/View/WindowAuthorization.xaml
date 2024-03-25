@@ -1,0 +1,62 @@
+﻿<Window x:Class="kursach.View.WindowAuthorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kursach.View"
+        mc:Ignorable="d"
+        Title="WindowAuthorization" Height="450" Width="800"
+        WindowStyle="ThreeDBorderWindow">
+    <Window.Resources>
+        <Style  x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#BEFFF3"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,5"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7FFFD4"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="6"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="6"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Rectangle Fill="#FFFDF0F0" Margin="2,50,2,352" />
+        <Rectangle Fill="#FFF6D8D8" Margin="34,82,37,24" />
+        <Label Content="Вход" HorizontalAlignment="Left" Margin="59,107,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Microsoft Yi Baiti"/>
+        <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="74,155,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
+        <Button Style="{StaticResource ButtonStyle}" Content="Войти" HorizontalAlignment="Left" Margin="646,331,0,0" VerticalAlignment="Top" Height="41" Width="88" FontSize="14" Click="Button_Click_1"/>
+        <TextBox HorizontalAlignment="Left" Margin="74,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="40" x:Name="login"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="74,255,0,0" VerticalAlignment="Top" Width="660" Height="40" x:Name="password"/>
+        <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
+        <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="59,15,0,0" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="62,331,0,0" VerticalAlignment="Top" Content="Назад" Width="88" Height="41"  FontSize="14" Click="Button_Click"/>
+    </Grid>
+</Window>
