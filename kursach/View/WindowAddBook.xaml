@@ -65,8 +65,8 @@
 
         <Label x:Name ="label10" Content =" Label 10 " HorizontalAlignment =" Left " Margin =" 290 ,503 ,0 ,0 " VerticalAlignment ="Top" Foreground="#831A1A"/>
         <TextBox x:Name ="textBox10" HorizontalAlignment =" Left " Margin =" 290 ,526 ,0 ,0 " TextWrapping =" Wrap " VerticalAlignment =" Top " Width =" 500 "/>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="600,560,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356"/>
-        <Button Content="Отменить" HorizontalAlignment="Left" Margin="706,560,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="600,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356"/>
+        <Button Content="Отменить" HorizontalAlignment="Left" Margin="706,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
 
 
     </Grid>
