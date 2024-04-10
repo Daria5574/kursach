@@ -28,6 +28,7 @@ namespace kursach.View
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

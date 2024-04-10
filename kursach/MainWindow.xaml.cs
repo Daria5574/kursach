@@ -30,12 +30,14 @@ namespace kursach
         {
             WindowAuthorization wAut = new WindowAuthorization();
             wAut.Show();
+            Close();
         }
 
         private void Button_Registration_Click(object sender, RoutedEventArgs e)
         {
             WindowRegistration wReg = new WindowRegistration();
             wReg.Show();
+            Close();
         }
     }
 }

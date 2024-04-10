@@ -15,20 +15,13 @@ using System.Windows.Shapes;
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowRegistration.xaml
+    /// Логика взаимодействия для WindowMainPage.xaml
     /// </summary>
-    public partial class WindowRegistration : Window
+    public partial class WindowMainPage : Window
     {
-        public WindowRegistration()
+        public WindowMainPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
         }
     }
 }
