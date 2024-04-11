@@ -24,7 +24,7 @@ namespace kursach.View
         {
             InitializeComponent();
             label1.Content = "Название*";
-            label2.Content = "Путь к файлу";
+            label2.Content = "Путь к файлу*";
             label3.Content = "Автор";
             label4.Content = "Количество печатных страниц";
             label5.Content = "Год написания";
