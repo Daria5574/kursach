@@ -23,5 +23,13 @@ namespace kursach.View
         {
             InitializeComponent();
         }
+        private void NavigateToMyBooks(object sender, MouseButtonEventArgs e)
+        {
+            WindowMyBooks wMyBooks = new WindowMyBooks();
+            wMyBooks.Show();
+            Close();
+        }
+
+
     }
 }

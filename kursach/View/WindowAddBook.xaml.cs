@@ -34,5 +34,12 @@ namespace kursach.View
             label9.Content = "О книге";
             label10.Content = "Возрастной рейтинг";
         }
+        private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
+        {
+            WindowMainPage wMainPage = new WindowMainPage();
+            wMainPage.Show();
+            Close();
+        }
+
     }
 }

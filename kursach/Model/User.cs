@@ -54,7 +54,10 @@ namespace kursach.Model
                 OnPropertyChanged("Password");
             }
         }
+        public List<Book>? Books { get; set; } = new();
+        public List<Author>? Authors { get; set; } = new();
 
+        public List<Bookshelf>? Bookshelfs { get; set; } = new();
         public User() { }
         public User(int id, string fName,
         string lName, string email, string password)

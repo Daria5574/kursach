@@ -15,26 +15,25 @@ using System.Windows.Shapes;
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAuthorization.xaml
+    /// Логика взаимодействия для WindowMyBooks.xaml
     /// </summary>
-    public partial class WindowAuthorization : Window
+    public partial class WindowMyBooks : Window
     {
-        public WindowAuthorization()
+        public WindowMyBooks()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowMainPage wMainPage = new WindowMainPage();
             wMainPage.Show();
+            Close();
+        }
+
+        private void NavigateToAddBook(object sender, MouseButtonEventArgs e)
+        {
+            WindowAddBook wAddBook = new WindowAddBook();
+            wAddBook.Show();
             Close();
         }
     }

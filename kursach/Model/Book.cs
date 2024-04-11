@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace kursach.Model
 {
-    class Book : INotifyPropertyChanged
+    public class Book : INotifyPropertyChanged
     {
         public int Id { get; set; }
 
@@ -33,6 +34,8 @@ namespace kursach.Model
                 OnPropertyChanged("ID_Author");
             }
         }
+        [ForeignKey("ID_Author")]
+        public Author Author { get; set; }
 
         private string the_Path_To_The_File;
         public string The_Path_To_The_File
@@ -150,6 +153,10 @@ namespace kursach.Model
                 OnPropertyChanged("ID_User");
             }
         }
+        public User User { get; set; } = new();
+        public List<Bookshelf>? Bookshelfs { get; set; }
+        public List<Theme>? Themes { get; set; }
+        public List<Category>? Categories { get; set; }
 
         public Book() { }
         public Book(int id, string name, int iD_Author, string the_Path_To_The_File, string cover,

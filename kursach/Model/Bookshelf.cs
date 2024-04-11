@@ -44,6 +44,8 @@ namespace kursach.Model
                 OnPropertyChanged("Color_Code");
             }
         }
+        public User User { get; set; } = new();
+        public List<Book>? Books { get; set; } = new();
         public Bookshelf() { }
         public Bookshelf(int id, int id_user, string name,
         string color_Code)

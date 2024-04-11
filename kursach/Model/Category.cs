@@ -22,6 +22,8 @@ namespace kursach.Model
                 OnPropertyChanged("Name");
             }
         }
+        public List<Book>? Books { get; set; } = new();
+        public List<Genre>? Genres { get; set; } = new();
         public Category() { }
         public Category(int id, string name)
         {

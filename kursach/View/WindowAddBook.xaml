@@ -29,8 +29,10 @@
 
     </Window.Resources>
     <Grid>
-        <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
-        <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="59,15,0,0" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage">
+            <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
+            <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
+        </StackPanel>
         <Rectangle Fill="#FFFDF0F0" Margin="0,50,2,648" />
         <Rectangle Fill="#FFC4C4" Margin="34,126,634,367" />
         <Rectangle Fill="#EFEAF3" Margin="266,126,36,106" />
@@ -67,7 +69,7 @@
         <TextBox x:Name ="textBox10" HorizontalAlignment =" Left " Margin =" 290 ,526 ,0 ,0 " TextWrapping =" Wrap " VerticalAlignment =" Top " Width =" 500 "/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="600,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356"/>
         <Button Content="Отменить" HorizontalAlignment="Left" Margin="706,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
-
+        <Label x:Name = "labelMyBooks" Content="Мои книги" HorizontalAlignment="Left" Margin="737,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.264,-0.549" Background="White" FontFamily="Tempus Sans ITC" FontSize="16"/>
 
     </Grid>
 </Window>

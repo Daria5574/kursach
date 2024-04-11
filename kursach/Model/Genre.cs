@@ -22,6 +22,7 @@ namespace kursach.Model
                 OnPropertyChanged("ID_Category");
             }
         }
+        public Category Category { get; set; }
 
         private string name;
         public string Name

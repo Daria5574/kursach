@@ -54,6 +54,7 @@ namespace kursach.Model
                 OnPropertyChanged("ID_User");
             }
         }
+        public User User { get; set; } = new();
 
         public Author() { }
         public Author(int id, string fName,
@@ -65,15 +66,14 @@ namespace kursach.Model
             this.Description = description;
             this.ID_User = iD_User;
         }
-
+        public List<Book>? Books { get; set; } = new();
         public Author ShallowCopy()
         {
             return (Author)this.MemberwiseClone();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName]
-string propertyName = "")
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

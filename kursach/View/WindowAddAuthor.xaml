@@ -51,7 +51,7 @@
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="290,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="545,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356"/>
         <Button Content="Отменить" HorizontalAlignment="Left" Margin="664,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
-
+        <Label x:Name = "labelMyAuthors" Content="Мои авторы" HorizontalAlignment="Left" Margin="664,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.264,-0.549" Background="White" FontFamily="Tempus Sans ITC" FontSize="16"/>
 
 
     </Grid>
