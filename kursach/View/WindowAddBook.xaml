@@ -45,7 +45,7 @@
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="290,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" />
 
         <Label x:Name="label3" Content="Label 3" HorizontalAlignment="Left" Margin="290,218,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="290,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" />
+        <ComboBox x:Name="CbAuthor" Height="20" Width="500" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,241,0,0" DisplayMemberPath="LName"/>
 
         <Label x:Name="label4" Content="Label 4" HorizontalAlignment="Left" Margin="290,257,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
         <TextBox x:Name="textBox4" HorizontalAlignment="Left" Margin="290,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" />
