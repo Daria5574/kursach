@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,6 +11,7 @@ namespace kursach.Model
 {
     public class User : INotifyPropertyChanged
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         private string fname;
@@ -59,10 +61,9 @@ namespace kursach.Model
 
         public List<Bookshelf>? Bookshelfs { get; set; } = new();
         public User() { }
-        public User(int id, string fName,
+        public User( string fName,
         string lName, string email, string password)
         {
-            this.Id = id;
             this.FName = fName;
             this.LName = lName;
             this.Email = email;

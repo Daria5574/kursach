@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
-        Title="WindowRegistration" Height="450" Width="800"
+        Title="WindowRegistration" Height="550" Width="800"
         WindowStyle="ThreeDBorderWindow">
     <Window.Resources>
         <Style TargetType="Button">
@@ -42,14 +42,21 @@
         <Rectangle Fill="#FFFDF0F0" Margin="2,50,2,352" />
         <Rectangle Fill="#FFF6D8D8" Margin="34,82,37,32" />
         <Label Content="Регистрация" HorizontalAlignment="Left" Margin="57,94,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Microsoft Yi Baiti"/>
-        <TextBox HorizontalAlignment="Left" Margin="74,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="30" x:Name="login"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="74,224,0,0" VerticalAlignment="Top" Width="660" Height="27" x:Name="password"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="74,286,0,0" VerticalAlignment="Top" Width="660" Height="27" x:Name="repeatPassword"/>
-        <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="74,144,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="74,202,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A" Height="25"/>
-        <Label Content="Повторите пароль" HorizontalAlignment="Left" Margin="74,259,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
+        <TextBox  HorizontalAlignment="Left" Margin="74,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="30" x:Name="fnameTextBox"/>
+        <TextBox  HorizontalAlignment="Left" Margin="74,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="30" x:Name="lnameTextBox"/>
+        <TextBox  HorizontalAlignment="Left" Margin="74,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="30" x:Name="emailTextBox"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="74,336,0,0" VerticalAlignment="Top" Width="660" Height="27" x:Name="passwordTextBox"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="74,399,0,0" VerticalAlignment="Top" Width="660" Height="27" x:Name="repeatPasswordTextBox"/>
 
-        <Button Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="570,330,0,0" VerticalAlignment="Top" Height="37" Width="164" FontSize="14"/>
-        <Button HorizontalAlignment="Left" Margin="62,330,0,0" VerticalAlignment="Top" Content="Назад" Width="88" Height="37"  FontSize="14" Click="Button_Click"/>
+
+        <Label Content="Имя*" HorizontalAlignment="Left" Margin="74,144,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="74,201,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A" Height="25"/>
+        <Label Content="Email*" HorizontalAlignment="Left" Margin="74,256,0,0" VerticalAlignment="Top"  Foreground="#FF831A1A" Height="25"/>
+        <Label Content="Пароль*" HorizontalAlignment="Left" Margin="74,316,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
+        <Label Content="Повторите пароль*" HorizontalAlignment="Left" Margin="74,377,0,0" VerticalAlignment="Top" FontFamily="Microsoft Yi Baiti" Foreground="#FF831A1A"/>
+
+        <Button Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="570,444,0,0" VerticalAlignment="Top" Height="37" Width="164" FontSize="14" Click="Button_Reg_Click"/>
+        <Button HorizontalAlignment="Left" Margin="56,450,0,0" VerticalAlignment="Top" Content="Назад" Width="88" Height="37"  FontSize="14" Click="Button_Click"/>
+        
     </Grid>
 </Window>

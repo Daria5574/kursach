@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using kursach.Model;
+using kursach.ViewModel;
+
 
 namespace kursach.View
 {
@@ -19,9 +22,14 @@ namespace kursach.View
     /// </summary>
     public partial class WindowRegistration : Window
     {
+
+        DatabaseContext db;
+
         public WindowRegistration()
         {
             InitializeComponent();
+
+            db = new DatabaseContext();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -29,6 +37,55 @@ namespace kursach.View
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
+        }
+
+        private void Button_Reg_Click(object sender, RoutedEventArgs e)
+        {
+            string fname = fnameTextBox.Text.Trim();
+            string lname = lnameTextBox.Text.Trim();
+            string email = emailTextBox.Text.Trim().ToLower();
+            string pass = passwordTextBox.Password.Trim();
+            string pass_2 = repeatPasswordTextBox.Password.Trim();
+
+            if(pass.Length < 5)
+            {
+                passwordTextBox.ToolTip = "Пароль должен быть длиной 6 символов или больше!";
+                passwordTextBox.Background = Brushes.LightCoral;
+            } 
+            
+            else if (pass != pass_2)
+            {
+                repeatPasswordTextBox.ToolTip = "Пароли должны совпадать.";
+                repeatPasswordTextBox.Background = Brushes.LightCoral;
+            }
+
+            else if (email.Length < 5 || email.Contains("@") || email.Contains("."))
+            {
+                emailTextBox.ToolTip = "Email введен неккоректно.";
+                emailTextBox.Background = Brushes.LightCoral;
+            }
+            else
+            {
+                fnameTextBox.ToolTip = "";
+                fnameTextBox.Background = Brushes.Transparent;
+
+                lnameTextBox.ToolTip = "";
+                lnameTextBox.Background = Brushes.Transparent;
+
+                emailTextBox.ToolTip = "";
+                emailTextBox.Background = Brushes.Transparent;
+
+                passwordTextBox.ToolTip = "";
+                passwordTextBox.Background = Brushes.Transparent;
+
+                repeatPasswordTextBox.ToolTip = "";
+                repeatPasswordTextBox.Background = Brushes.Transparent;
+
+                MessageBox.Show("Регистрация успешно завершена!");
+
+                User user = new User(fname, lname, email, pass);
+               // db.Users.Add();
+            }
         }
     }
 }
