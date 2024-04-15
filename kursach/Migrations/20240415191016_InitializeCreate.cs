@@ -4,7 +4,7 @@
 
 namespace kursach.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitializeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

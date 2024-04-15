@@ -11,8 +11,8 @@ using kursach.Model;
 namespace kursach.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240415133242_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240415191016_InitializeCreate")]
+    partial class InitializeCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
