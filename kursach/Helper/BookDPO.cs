@@ -27,14 +27,14 @@ namespace kursach.Helper
             }
         }
 
-        private int? _iD_Author;
-        public int? ID_Author
+        private string _iD_Author;
+        public string ID_Author
         {
             get { return _iD_Author; }
             set
             {
                 _iD_Author = value;
-                OnPropertyChanged("ID_Author");
+                OnPropertyChanged(nameof(ID_Author));
             }
         }
         [ForeignKey("ID_Author")]
@@ -162,7 +162,7 @@ namespace kursach.Helper
         public List<Category>? Categories { get; set; }
 
         public BookDPO() { }
-        public BookDPO(int id, string name, int iD_Author, string the_Path_To_The_File, string cover,
+        public BookDPO(int id, string name, string iD_Author, string the_Path_To_The_File, string cover,
 int number_Of_Printed_Pages, int date_Of_Writing, int the_Year_Of_Publishing,
 string isbn, string time_To_Read, string about_The_Book, string age_Rating,
 bool is_Favorite, int iD_User)
