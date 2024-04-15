@@ -184,12 +184,12 @@ namespace kursach.ViewModel
                     wnBook.DataContext = tempBook;
                     wnBook.CbAuthor.ItemsSource = ListAuthor;
 
-                    var creator = ListAuthor.FirstOrDefault(p => p.LName == bookDPO.ID_Author);
-                    if (creator != null)
-                    {
-                        int creatorIndex = ListBook.IndexOf(creator);
-                        wnBook.CbAuthor.SelectedIndex = creatorIndex;
-                    }
+                    //var creator = ListAuthor.FirstOrDefault(p => p.LName == bookDPO.ID_Author);
+                    //if (creator != null)
+                    //{
+                    //    int creatorIndex = ListBook.IndexOf(creator);
+                    //    wnBook.CbAuthor.SelectedIndex = creatorIndex;
+                    //}
 
                     if (wnBook.ShowDialog() == true)
                     {
