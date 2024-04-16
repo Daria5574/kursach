@@ -135,8 +135,8 @@ namespace kursach.Helper
             }
         }
 
-        private bool? is_Favorite;
-        public bool? Is_Favorite
+        private int? is_Favorite;
+        public int? Is_Favorite
         {
             get { return is_Favorite; }
             set
@@ -165,7 +165,7 @@ namespace kursach.Helper
         public BookDPO(int id, string name, string iD_Author, string the_Path_To_The_File, string cover,
 int number_Of_Printed_Pages, int date_Of_Writing, int the_Year_Of_Publishing,
 string isbn, string time_To_Read, string about_The_Book, string age_Rating,
-bool is_Favorite, int iD_User)
+int is_Favorite, int iD_User)
         {
             this.Id = id;
             this.Name = name;

@@ -30,6 +30,14 @@ namespace kursach.View
             InitializeComponent();
 
             db = new DatabaseContext();
+
+            //List<User> users = db.Users.ToList();
+            //string str = "";
+            //foreach (User user in users)
+            //{
+            //    str += "Имя и фамилия: "+ user.FName + " " + user.LName;
+            //}
+            //example.Text = str;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,7 +67,7 @@ namespace kursach.View
                 repeatPasswordTextBox.Background = Brushes.LightCoral;
             }
 
-            else if (email.Length < 5 || email.Contains("@") || email.Contains("."))
+            else if (email.Length < 5 || !email.Contains("@") || !email.Contains("."))
             {
                 emailTextBox.ToolTip = "Email введен неккоректно.";
                 emailTextBox.Background = Brushes.LightCoral;
@@ -84,7 +92,8 @@ namespace kursach.View
                 MessageBox.Show("Регистрация успешно завершена!");
 
                 User user = new User(fname, lname, email, pass);
-               // db.Users.Add();
+                db.Users.Add(user);
+                db.SaveChanges();
             }
         }
     }

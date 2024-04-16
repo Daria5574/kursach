@@ -40,7 +40,7 @@
         <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
         <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="59,15,0,0" VerticalAlignment="Top"/>
         <Rectangle Fill="#FFFDF0F0" Margin="2,50,2,352" />
-        <Rectangle Fill="#FFF6D8D8" Margin="34,82,37,32" />
+        <Rectangle Fill="#FFF6D8D8" Margin="34,82,37,10" />
         <Label Content="Регистрация" HorizontalAlignment="Left" Margin="57,94,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Microsoft Yi Baiti"/>
         <TextBox  HorizontalAlignment="Left" Margin="74,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="30" x:Name="fnameTextBox"/>
         <TextBox  HorizontalAlignment="Left" Margin="74,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="30" x:Name="lnameTextBox"/>
@@ -57,6 +57,7 @@
 
         <Button Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="570,444,0,0" VerticalAlignment="Top" Height="37" Width="164" FontSize="14" Click="Button_Reg_Click"/>
         <Button HorizontalAlignment="Left" Margin="56,450,0,0" VerticalAlignment="Top" Content="Назад" Width="88" Height="37"  FontSize="14" Click="Button_Click"/>
-        
+        <TextBlock x:Name="example" HorizontalAlignment="Left" Margin="51,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
