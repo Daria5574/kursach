@@ -156,9 +156,9 @@ namespace kursach.Model
             }
         }
         public User User { get; set; } = new();
-        public List<Bookshelf>? Bookshelfs { get; set; }
-        public List<Theme>? Themes { get; set; }
-        public List<Category>? Categories { get; set; }
+        public List<Book_Bookshelf>? Book_Bookshelfs { get; set; }
+        public List<Book_Theme>? Book_Themes { get; set; }
+        public List<Book_Category>? Book_Categories { get; set; }
 
         public Book() 
         {

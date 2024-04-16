@@ -86,6 +86,35 @@ namespace kursach
                 context.AddTheme("Повести");
                 context.AddTheme("Экранизация");//Маленьки женщины, Цветы для Элджернона
 
+                context.AddBookshelf(2, "Любимые книги", "#F08080");
+                context.AddBookshelf(3, "Прочитать позже", "#FFD700");
+                context.AddBookshelf(4, "Самое любимое", "#9370DB");
+                context.AddBookshelf(4, "На будущее", "#FFF8DC");
+
+                context.AddBook_Bookshelf(1, 1);
+                context.AddBook_Bookshelf(1, 5);
+                context.AddBook_Bookshelf(2, 6);
+                context.AddBook_Bookshelf(3, 3);
+                context.AddBook_Bookshelf(4, 2);
+                context.AddBook_Bookshelf(4, 5);
+
+                context.AddBook_Category(1, 5);
+                context.AddBook_Category(2, 2);
+                context.AddBook_Category(3, 3);
+                context.AddBook_Category(4, 2);
+                context.AddBook_Category(4, 5);
+                context.AddBook_Category(5, 2);
+                context.AddBook_Category(5, 5);
+                context.AddBook_Category(6, 5);
+
+                context.AddBook_Theme(1, 1);
+                context.AddBook_Theme(2, 2);
+                context.AddBook_Theme(2, 7);
+                context.AddBook_Theme(3, 3);
+                context.AddBook_Theme(3, 7);
+                context.AddBook_Theme(4, 4);
+                context.AddBook_Theme(5, 5);
+                context.AddBook_Theme(6, 6);
             }
         }
     }

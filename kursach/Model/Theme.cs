@@ -22,7 +22,7 @@ namespace kursach.Model
                 OnPropertyChanged("Name");
             }
         }
-        public List<Book>? Books { get; set; } = new();
+        public List<Book_Theme>? Book_Themes { get; set; } = new();
         public Theme() { }
         public Theme(int id, string name)
         {

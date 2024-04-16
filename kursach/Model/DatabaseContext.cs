@@ -65,7 +65,32 @@ namespace kursach.Model
             SaveChanges();
         }
 
+        public DbSet<Book_Bookshelf> Book_Bookshelfs => Set<Book_Bookshelf>();
 
+        public void AddBook_Bookshelf(int iD_Book, int iD_Bookshelf)
+        {
+            var newBook_Bookshelf = new Book_Bookshelf { ID_Book = iD_Book, ID_Bookshelf = iD_Bookshelf };
+            Book_Bookshelfs.Add(newBook_Bookshelf);
+            SaveChanges();
+        }
+
+        public DbSet<Book_Category> Book_Categories => Set<Book_Category>();
+
+        public void AddBook_Category(int iD_Book, int iD_Category)
+        {
+            var newBook_Category = new Book_Category { ID_Book = iD_Book, ID_Category = iD_Category };
+            Book_Categories.Add(newBook_Category);
+            SaveChanges();
+        }
+
+        public DbSet<Book_Theme> Book_Themes => Set<Book_Theme>();
+
+        public void AddBook_Theme(int iD_Book, int iD_Theme)
+        {
+            var newBook_Theme = new Book_Theme { ID_Book = iD_Book, ID_Theme = iD_Theme };
+            Book_Themes.Add(newBook_Theme);
+            SaveChanges();
+        }
 
         public DatabaseContext() => Database.EnsureCreated();
 

@@ -45,7 +45,7 @@ namespace kursach.Model
             }
         }
         public User User { get; set; } = new();
-        public List<Book>? Books { get; set; } = new();
+        public List<Book_Bookshelf>? Book_Bookshelfs { get; set; } = new();
         public Bookshelf() { }
         public Bookshelf(int id, int id_user, string name,
         string color_Code)
@@ -62,8 +62,7 @@ namespace kursach.Model
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName]
-string propertyName = "")
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
