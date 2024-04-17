@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
-        Title="WindowBook" Height="450" Width="800">
+        Title="WindowBook" Height="550" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#FFEDCECE"/>
@@ -29,11 +29,19 @@
 
     </Window.Resources>
     <Grid>
+        
         <StackPanel Background="#E8CCFF">
             <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
             </StackPanel>
+            <Menu Background="#FFFDF0F0">
+                <StackPanel Orientation="Horizontal">
+                    <MenuItem x:Name="author" Margin="330,0,0,0" Header="Авторы" Height="25"></MenuItem>
+                    <MenuItem x:Name="favorite" Margin="10,0,0,0" Header="Избранное" Height="25"></MenuItem>
+                    <MenuItem x:Name="bookshelf" Margin="10,0,0,0" Header="Книжные полки" Height="25"></MenuItem>
+                </StackPanel>
+            </Menu>
             <StackPanel Orientation="Horizontal"  Background="White">
                 <Button Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}"/>
                 <Button Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}"/>
@@ -69,5 +77,6 @@
             </ListView>
 
         </StackPanel>
+
     </Grid>
 </Window>

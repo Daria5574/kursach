@@ -14,6 +14,7 @@ namespace kursach
     /// </summary>
     public partial class App : Application
     {
+        public static User currentUser = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

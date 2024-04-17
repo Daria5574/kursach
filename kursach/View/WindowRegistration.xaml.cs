@@ -39,13 +39,13 @@ namespace kursach.View
             //}
             //example.Text = str;
 
-            List<Author> a = db.author.ToList();
-            string str2 = "";
-            foreach (Author author in a)
-            {
-                str2 += "Имя и фамилия: " + author.FName + " " + author.LName;
-            }
-            example.Text = str2;
+            //List<Author> a = db.author.ToList();
+            //string str2 = "";
+            //foreach (Author author in a)
+            //{
+            //    str2 += "Имя и фамилия: " + author.FName + " " + author.LName;
+            //}
+            //example.Text = str2;
         }
 
 

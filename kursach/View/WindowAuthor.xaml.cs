@@ -25,7 +25,7 @@ namespace kursach.View
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
-            WindowMainPage wMainPage = new WindowMainPage();
+            WindowBook wMainPage = new WindowBook();
             wMainPage.Show();
             Close();
         }

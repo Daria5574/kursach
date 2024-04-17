@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using kursach.Model;
 
 namespace kursach.View
 {
@@ -31,11 +32,47 @@ namespace kursach.View
             Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Auth_Click(object sender, RoutedEventArgs e)
         {
-            WindowMainPage wMainPage = new WindowMainPage();
-            wMainPage.Show();
-            Close();
+
+            string email = emailTextBox.Text.Trim().ToLower();
+            string pass = passwordTextBox.Password.Trim();
+
+            if (email.Length < 5 || !email.Contains("@") || !email.Contains("."))
+            {
+                emailTextBox.ToolTip = "Email введен неккоректно.";
+                emailTextBox.Background = Brushes.LightCoral;
+            }
+            else if (pass.Length < 5)
+            {
+                passwordTextBox.ToolTip = "Пароль должен быть длиной 6 символов или больше!";
+                passwordTextBox.Background = Brushes.LightCoral;
+            }
+
+            else
+            {
+                emailTextBox.ToolTip = "";
+                emailTextBox.Background = Brushes.Transparent;
+
+                passwordTextBox.ToolTip = "";
+                passwordTextBox.Background = Brushes.Transparent;
+
+                User authUser = null;
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    authUser = db.user.Where(b => b.Email == email && b.Password == pass).FirstOrDefault();
+                }
+
+                if (authUser != null)
+                {
+                    App.currentUser = authUser;
+                    WindowBook wMyBooks = new WindowBook();
+                    wMyBooks.Show();
+                    Close();
+                }
+                else
+                    MessageBox.Show("Пользователь с такой почтой и паролем не найден."); 
+            }
         }
     }
 }
