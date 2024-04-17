@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace kursach.Model
 {
-
     public class Bookshelf : INotifyPropertyChanged
     {
+        [Key]
         public int Id { get; set; }
 
         private int iD_User;
@@ -20,7 +22,7 @@ namespace kursach.Model
             set
             {
                 iD_User = value;
-                OnPropertyChanged("ID_User");
+                OnPropertyChanged(nameof(ID_User));
             }
         }
         private string name;
@@ -30,7 +32,7 @@ namespace kursach.Model
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -41,20 +43,18 @@ namespace kursach.Model
             set
             {
                 color_Code = value;
-                OnPropertyChanged("Color_Code");
+                OnPropertyChanged(nameof(Color_Code));
             }
         }
-        public User User { get; set; } = new();
-        public List<Book_Bookshelf>? Book_Bookshelfs { get; set; } = new();
+        [ForeignKey("ID_User")]
+        public User User { get; set; }
+        public List<Book_Bookshelf>? Book_Bookshelf { get; set; } = new();
         public Bookshelf() { }
-        public Bookshelf(int id, int id_user, string name,
-        string color_Code)
+        public Bookshelf(int id_user, string name, string color_Code)
         {
-            this.Id = id;
             this.ID_User = id_user;
             this.Name = name;
             this.Color_Code = color_Code;
-
         }
         public Bookshelf ShallowCopy()
         {

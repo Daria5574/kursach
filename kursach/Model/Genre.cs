@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,6 +12,7 @@ namespace kursach.Model
 {
     public class Genre : INotifyPropertyChanged
     {
+        [Key]
         public int Id { get; set; }
 
         private int iD_Category;
@@ -22,6 +25,7 @@ namespace kursach.Model
                 OnPropertyChanged("ID_Category");
             }
         }
+        [ForeignKey("ID_Category")]
         public Category Category { get; set; }
 
         private string name;
@@ -35,9 +39,8 @@ namespace kursach.Model
             }
         }
         public Genre() { }
-        public Genre(int id, int id_category, string name)
+        public Genre(int id_category, string name)
         {
-            this.Id = id;
             this.ID_Category = id_category;
             this.Name = name;
         }

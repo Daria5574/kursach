@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,6 +12,7 @@ namespace kursach.Model
 {
     public class Author : INotifyPropertyChanged
     {
+        [Key]
         public int Id { get; set; }
 
         private string? fname;
@@ -19,7 +22,7 @@ namespace kursach.Model
             set
             {
                 fname = value;
-                OnPropertyChanged("FName");
+                OnPropertyChanged(nameof(FName));
             }
         }
         private string lname;
@@ -29,7 +32,7 @@ namespace kursach.Model
             set
             {
                 lname = value;
-                OnPropertyChanged("LName");
+                OnPropertyChanged(nameof(LName));
             }
         }
 
@@ -41,7 +44,7 @@ namespace kursach.Model
             set
             {
                 description = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged(nameof(Description));
             }
         }
         private int? iD_User;
@@ -51,22 +54,22 @@ namespace kursach.Model
             set
             {
                 iD_User = value;
-                OnPropertyChanged("ID_User");
+                OnPropertyChanged(nameof(ID_User));
             }
         }
-        public User User { get; set; } = new();
+        [ForeignKey("ID_User")]
+        public User User { get; set; }
 
         public Author() { }
-        public Author(int id, string fName,
-        string lName, string description, int iD_User)
+        public Author( string? fName,
+        string lName, string? description, int iD_User)
         {
-            this.Id = id;
             this.FName = fName;
             this.LName = lName;
             this.Description = description;
             this.ID_User = iD_User;
         }
-        public List<Book>? Books { get; set; } = new();
+        public List<Book>? Book { get; set; } = new();
         public Author ShallowCopy()
         {
             return (Author)this.MemberwiseClone();

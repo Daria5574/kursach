@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace kursach.Model
 {
     public class Category : INotifyPropertyChanged
     {
+        [Key]
         public int Id { get; set; }
 
         private string name;
@@ -19,15 +21,14 @@ namespace kursach.Model
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
-        public List<Book>? Books { get; set; } = new();
-        public List<Genre>? Genres { get; set; } = new();
+        public List<Book_Category>? Book_Category { get; set; } = null;
+        public List<Genre>? Genre { get; set; }
         public Category() { }
-        public Category(int id, string name)
+        public Category(string name)
         {
-            this.Id = id;
             this.Name = name;
         }
         public event PropertyChangedEventHandler PropertyChanged;

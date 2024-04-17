@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,6 +11,7 @@ namespace kursach.Model
 {
     public class Theme : INotifyPropertyChanged
     {
+        [Key]
         public int Id { get; set; }
 
         private string name;
@@ -19,14 +21,13 @@ namespace kursach.Model
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
-        public List<Book_Theme>? Book_Themes { get; set; } = new();
+        public List<Book_Theme>? Book_Theme { get; set; } = new();
         public Theme() { }
-        public Theme(int id, string name)
+        public Theme(string name)
         {
-            this.Id = id;
             this.Name = name;
         }
         public event PropertyChangedEventHandler PropertyChanged;

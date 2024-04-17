@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -11,17 +12,17 @@ namespace kursach.Model
 {
     public class User : INotifyPropertyChanged
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Key]
+        public int ID_User { get; set; }
 
-        private string fname;
-        public string FName
+        private string? fname;
+        public string? FName
         {
             get { return fname; }
             set
             {
                 fname = value;
-                OnPropertyChanged("FName");
+                OnPropertyChanged(nameof(FName));
             }
         }
         private string? lname;
@@ -31,7 +32,7 @@ namespace kursach.Model
             set
             {
                 lname = value;
-                OnPropertyChanged("LName");
+                OnPropertyChanged(nameof(LName));
             }
         }
 
@@ -42,7 +43,7 @@ namespace kursach.Model
             set
             {
                 email = value;
-                OnPropertyChanged("Email");
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -53,16 +54,16 @@ namespace kursach.Model
             set
             {
                 password = value;
-                OnPropertyChanged("Password");
+                OnPropertyChanged(nameof(Password));
             }
         }
-        public List<Book>? Books { get; set; } = new();
-        public List<Author>? Authors { get; set; } = new();
+        public List<Book>? Book { get; set; } = new();
+        public List<Author>? Author { get; set; } = new();
 
-        public List<Bookshelf>? Bookshelfs { get; set; } = new();
+        public List<Bookshelf>? Bookshelf { get; set; } = new();
         public User() { }
-        public User( string fName,
-        string lName, string email, string password)
+        public User(string? fName,
+        string? lName, string email, string password)
         {
             this.FName = fName;
             this.LName = lName;

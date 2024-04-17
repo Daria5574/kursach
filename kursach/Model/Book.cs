@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -13,6 +14,7 @@ namespace kursach.Model
 {
     public class Book : INotifyPropertyChanged
     {
+        [Key]
         public int Id { get; set; }
 
         private string name;
@@ -22,7 +24,7 @@ namespace kursach.Model
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -33,7 +35,7 @@ namespace kursach.Model
             set
             {
                 iD_Author = value;
-                OnPropertyChanged("ID_Author");
+                OnPropertyChanged(nameof(ID_Author));
             }
         }
         [ForeignKey("ID_Author")]
@@ -46,7 +48,7 @@ namespace kursach.Model
             set
             {
                 the_Path_To_The_File = value;
-                OnPropertyChanged("The_Path_To_The_File");
+                OnPropertyChanged(nameof(The_Path_To_The_File));
             }
         }
 
@@ -68,7 +70,7 @@ namespace kursach.Model
             set
             {
                 number_Of_Printed_Pages = value;
-                OnPropertyChanged("Number_Of_Printed_Pages");
+                OnPropertyChanged(nameof(Number_Of_Printed_Pages));
             }
         }
         private int? date_Of_Writing;
@@ -78,7 +80,7 @@ namespace kursach.Model
             set
             {
                 date_Of_Writing = value;
-                OnPropertyChanged("Date_Of_Writing");
+                OnPropertyChanged(nameof(Date_Of_Writing));
             }
         }
 
@@ -89,7 +91,7 @@ namespace kursach.Model
             set
             {
                 the_Year_Of_Publishing = value;
-                OnPropertyChanged("The_Year_Of_Publishing");
+                OnPropertyChanged(nameof(The_Year_Of_Publishing));
             }
         }
 
@@ -100,7 +102,7 @@ namespace kursach.Model
             set
             {
                 isbn = value;
-                OnPropertyChanged("ISBN");
+                OnPropertyChanged(nameof(ISBN));
             }
         }
         private string? time_To_Read;
@@ -110,7 +112,7 @@ namespace kursach.Model
             set
             {
                 time_To_Read = value;
-                OnPropertyChanged("Time_To_Read");
+                OnPropertyChanged(nameof(Time_To_Read));
             }
         }
         private string? about_The_Book;
@@ -120,7 +122,7 @@ namespace kursach.Model
             set
             {
                 about_The_Book = value;
-                OnPropertyChanged("About_The_Book");
+                OnPropertyChanged(nameof(About_The_Book));
             }
         }
         private string? age_Rating;
@@ -130,7 +132,7 @@ namespace kursach.Model
             set
             {
                 age_Rating = value;
-                OnPropertyChanged("Age_Rating");
+                OnPropertyChanged(nameof(Age_Rating));
             }
         }
 
@@ -141,7 +143,7 @@ namespace kursach.Model
             set
             {
                 is_Favorite = value;
-                OnPropertyChanged("Is_Favorite");
+                OnPropertyChanged(nameof(Is_Favorite));
             }
         }
 
@@ -152,24 +154,24 @@ namespace kursach.Model
             set
             {
                 iD_User = value;
-                OnPropertyChanged("ID_User");
+                OnPropertyChanged(nameof(ID_User));
             }
         }
-        public User User { get; set; } = new();
-        public List<Book_Bookshelf>? Book_Bookshelfs { get; set; }
-        public List<Book_Theme>? Book_Themes { get; set; }
-        public List<Book_Category>? Book_Categories { get; set; }
+        [ForeignKey("ID_User")]
+        public User User { get; set; }
+        public List<Book_Bookshelf>? Book_Bookshelf { get; set; }
+        public List<Book_Theme>? Book_Theme { get; set; }
+        public List<Book_Category>? Book_Category { get; set; }
 
         public Book() 
         {
             this.Is_Favorite = 0;
         }
-        public Book(int id, string name, int iD_Author, string the_Path_To_The_File, string cover,
+        public Book(string name, int iD_Author, string the_Path_To_The_File, string cover,
 int number_Of_Printed_Pages, int date_Of_Writing, int the_Year_Of_Publishing,
 string isbn, string time_To_Read, string about_The_Book, string age_Rating,
 int is_Favorite, int iD_User)
         {
-            this.Id = id;
             this.Name = name;
             this.ID_Author = iD_Author;
             this.The_Path_To_The_File = the_Path_To_The_File;

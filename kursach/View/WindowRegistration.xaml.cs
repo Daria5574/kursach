@@ -35,10 +35,19 @@ namespace kursach.View
             //string str = "";
             //foreach (User user in users)
             //{
-            //    str += "Имя и фамилия: "+ user.FName + " " + user.LName;
+            //    str += "Имя и фамилия: " + user.FName + " " + user.LName + user.Email;
             //}
             //example.Text = str;
+
+            List<Author> a = db.author.ToList();
+            string str2 = "";
+            foreach (Author author in a)
+            {
+                str2 += "Имя и фамилия: " + author.FName + " " + author.LName;
+            }
+            example.Text = str2;
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -92,7 +101,7 @@ namespace kursach.View
                 MessageBox.Show("Регистрация успешно завершена!");
 
                 User user = new User(fname, lname, email, pass);
-                db.Users.Add(user);
+                db.user.Add(user);
                 db.SaveChanges();
             }
         }

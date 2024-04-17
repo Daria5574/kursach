@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,7 +12,7 @@ namespace kursach.Model
 {
     public class Book_Bookshelf : INotifyPropertyChanged
     {
-
+        [Key]
         public int Id { get; set; }
 
         private int? iD_Book;
@@ -20,10 +22,11 @@ namespace kursach.Model
             set
             {
                 iD_Book = value;
-                OnPropertyChanged("ID_Book");
+                OnPropertyChanged(nameof(ID_Book));
             }
         }
-        public Book Book { get; set; } = new();
+        [ForeignKey("ID_Book")]
+        public Book Book { get; set; }
 
         private int? iD_Bookshelf;
         public int? ID_Bookshelf
@@ -32,10 +35,11 @@ namespace kursach.Model
             set
             {
                 iD_Bookshelf = value;
-                OnPropertyChanged("ID_Bookshelf");
+                OnPropertyChanged(nameof(ID_Bookshelf));
             }
         }
-        public Bookshelf Bookshelf { get; set; } = new();
+        [ForeignKey("ID_Bookshelf")]
+        public Bookshelf Bookshelf { get; set; }
 
         public Book_Bookshelf() { }
         public Book_Bookshelf(int iD_Book,
