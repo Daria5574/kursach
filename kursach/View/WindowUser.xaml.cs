@@ -15,17 +15,22 @@ using System.Windows.Shapes;
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAddAuthor.xaml
+    /// Логика взаимодействия для WindowUser.xaml
     /// </summary>
-    public partial class WindowAddAuthor : Window
+    public partial class WindowUser : Window
     {
-        public WindowAddAuthor()
+        public WindowUser()
         {
             InitializeComponent();
-            label1.Content = "Имя автора";
-            label2.Content = "Фамилия автора*";
-            label3.Content = "Об авторе";
             nameUser.Content = App.currentUser.FName;
+            flNameUser.Content = App.currentUser.FName + " " + App.currentUser.LName;
+            emailUser.Content = App.currentUser.Email;
+        }
+        private void NavigateToUser(object sender, MouseButtonEventArgs e)
+        {
+            WindowUser wUser = new WindowUser();
+            wUser.Show();
+            Close();
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -43,12 +48,6 @@ namespace kursach.View
         {
             WindowAuthor wAuth = new WindowAuthor();
             wAuth.Show();
-            Close();
-        }
-        private void NavigateToUser(object sender, MouseButtonEventArgs e)
-        {
-            WindowUser wUser = new WindowUser();
-            wUser.Show();
             Close();
         }
     }

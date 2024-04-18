@@ -37,7 +37,9 @@ namespace kursach.View
             wMainPage.Show();
             Close();
         }
-        private void favorite_Click(object sender, RoutedEventArgs e)
+
+
+            private void favorite_Click(object sender, RoutedEventArgs e)
         {
             WindowFavorite wFav = new WindowFavorite();
             wFav.Show();
