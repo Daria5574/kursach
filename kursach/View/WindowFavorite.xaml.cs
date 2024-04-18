@@ -16,19 +16,26 @@ using System.Windows.Shapes;
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAuthor.xaml
+    /// Логика взаимодействия для WindowFavorite.xaml
     /// </summary>
-    public partial class WindowAuthor : Window
+    public partial class WindowFavorite : Window
     {
-        public WindowAuthor()
+        public WindowFavorite()
         {
             InitializeComponent();
+
             DatabaseContext db = new DatabaseContext();
-            List<Author> authors = db.author
-                .Where(b => b.ID_User == App.currentUser.ID_User)
-                .Select(b => new Author { FName = b.FName + " "+ b.LName })
-                .ToList();
-            lvMyBook.ItemsSource = authors;
+            var listViewData = from book in db.book
+                               join author in db.author on book.ID_Author equals author.Id
+                               where book.ID_User == App.currentUser.ID_User && book.Is_Favorite == 1
+                               select new
+                               {
+                                   BookName = book.Name,
+                                   AuthorLastName = author.FName + " " + author.LName,
+                               };
+
+            lvMyBook.ItemsSource = listViewData.ToList();
+
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -40,13 +47,6 @@ namespace kursach.View
         {
             WindowFavorite wFav = new WindowFavorite();
             wFav.Show();
-            Close();
-        }
-
-        private void Button_Add_Click(object sender, RoutedEventArgs e)
-        {
-            WindowAddAuthor wAdd = new WindowAddAuthor();
-            wAdd.Show();
             Close();
         }
 

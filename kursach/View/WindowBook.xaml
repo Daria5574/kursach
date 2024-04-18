@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
-        Title="WindowBook" Height="550" Width="800">
+        Title="WindowBook" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="AddEditDelete">
             <Setter Property="Background" Value="#FFEDCECE"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Template">
@@ -26,51 +26,46 @@
             </Style.Triggers>
 
         </Style>
+        <Style TargetType="Button" x:Key="menu">
+            <Setter Property="Background" Value="#FCF9F8"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="White"/>
 
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
     </Window.Resources>
     <Grid>
         
-        <StackPanel Background="#E8CCFF">
+        <StackPanel Background="#E8CCFF" >
             <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
-                <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
+                <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
+
             </StackPanel>
-            <Menu Background="#FFFDF0F0">
-                <StackPanel Orientation="Horizontal">
-                    <MenuItem x:Name="author" Margin="330,0,0,0" Header="Авторы" Height="25"></MenuItem>
-                    <MenuItem x:Name="favorite" Margin="10,0,0,0" Header="Избранное" Height="25"></MenuItem>
-                    <MenuItem x:Name="bookshelf" Margin="10,0,0,0" Header="Книжные полки" Height="25"></MenuItem>
+            
+                <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
+                <Label Content="Мои книги" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="410,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
+                <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
                 </StackPanel>
-            </Menu>
+
             <StackPanel Orientation="Horizontal"  Background="White">
-                <Button Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}"/>
-                <Button Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}"/>
-                <Button Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}" Click="Button_Add_Click"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}"/>
             </StackPanel>
-            <ListView x:Name="lvBook" SelectedItem="{Binding SelectedBook}" ItemsSource="{Binding ListBook}" Background="#FFFFBB">
+            <ListView x:Name="lvMyBook" Background="#FFFFBB">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Код" Width="40" 
-                                     DisplayMemberBinding="{Binding Id}"/>
-                            <GridViewColumn Header="Название"  Width="100"
-                                     DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Header="Автор"  Width="100"
-                                    DisplayMemberBinding="{Binding ID_Author}"/>
-                            <GridViewColumn Header="Кол-во стр."  Width="70"
-                                     DisplayMemberBinding="{Binding Number_Of_Printed_Pages}"/>
-                            <GridViewColumn Header="Год написания"  Width="90"
-                                     DisplayMemberBinding="{Binding Date_Of_Writing}"/>
-                            <GridViewColumn Header="Год издания"  Width="80"
-                                     DisplayMemberBinding="{Binding The_Year_Of_Publishing}"/>
-                            <GridViewColumn Header="ISBN"  Width="60"
-                                     DisplayMemberBinding="{Binding ISBN}"/>
-                            <GridViewColumn Header="Время чтения"  Width="90"
-                                     DisplayMemberBinding="{Binding Time_To_Read}"/>
-                            <GridViewColumn Header="О книге"  Width="190"
-                                     DisplayMemberBinding="{Binding About_The_Book}"/>
-                            <GridViewColumn Header="Рейтинг"  Width="50"
-                                     DisplayMemberBinding="{Binding Age_Rating}"/>
+                            <GridViewColumn Header="Название книги" DisplayMemberBinding="{Binding BookName}" />
+                            <GridViewColumn Header="Имя и фамилия автора" DisplayMemberBinding="{Binding AuthorLastName}" />
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>

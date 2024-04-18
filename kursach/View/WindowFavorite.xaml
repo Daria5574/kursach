@@ -1,31 +1,12 @@
-﻿<Window x:Class="kursach.View.WindowAuthor"
+﻿<Window x:Class="kursach.View.WindowFavorite"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
-        Title="WindowAuthor" Height="450" Width="800">
+        Title="WindowFavorite" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="AddEditDelete">
-            <Setter Property="Background" Value="#FFEDCECE"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,5"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FFFDF0F0"/>
-                </Trigger>
-            </Style.Triggers>
-
-        </Style>
         <Style TargetType="Button" x:Key="menu">
             <Setter Property="Background" Value="#FCF9F8"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -34,10 +15,29 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="BorderBrush" Value="White"/>
                 </Trigger>
             </Style.Triggers>
-
         </Style>
+        <Style TargetType="Button" x:Key="AddEditDelete">
+            <Setter Property="Background" Value="#FFEDCECE"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,5"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FFFDF0F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+   
     </Window.Resources>
     <Grid>
 
@@ -48,28 +48,26 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
-                <Label Content="Мои авторы" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
+            <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="35">
+                <Label Content="Избранное" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
                 <Button Style="{StaticResource menu}" x:Name="author" Margin="410,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal"  Background="White">
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}" Click="Button_Add_Click"/>
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}"/>
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}"/>
-            </StackPanel>
+
             <ListView x:Name="lvMyBook" Background="#FFFFBB">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Имя и фамилия автора" DisplayMemberBinding="{Binding FName}" />
+                            <GridViewColumn Header="Название книги" DisplayMemberBinding="{Binding BookName}" />
+                            <GridViewColumn Header="Имя и фамилия автора" DisplayMemberBinding="{Binding AuthorLastName}" />
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
             </ListView>
 
         </StackPanel>
+
     </Grid>
 </Window>
