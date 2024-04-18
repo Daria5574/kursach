@@ -23,6 +23,7 @@ namespace kursach.View
         public WindowAuthor()
         {
             InitializeComponent();
+            nameUser.Content = App.currentUser.FName;
             DatabaseContext db = new DatabaseContext();
             List<Author> authors = db.author
                 .Where(b => b.ID_User == App.currentUser.ID_User)

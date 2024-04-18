@@ -23,7 +23,7 @@ namespace kursach.View
         public WindowBook()
         {
             InitializeComponent();
-
+            nameUser.Content = App.currentUser.FName;
             DatabaseContext db = new DatabaseContext();
             var listViewData = from book in db.book
                                join author in db.author on book.ID_Author equals author.Id

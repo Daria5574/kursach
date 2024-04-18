@@ -26,5 +26,23 @@ namespace kursach.View
             label2.Content = "Фамилия автора*";
             label3.Content = "Об авторе";
         }
+        private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
+        {
+            WindowBook wMainPage = new WindowBook();
+            wMainPage.Show();
+            Close();
+        }
+        private void favorite_Click(object sender, RoutedEventArgs e)
+        {
+            WindowFavorite wFav = new WindowFavorite();
+            wFav.Show();
+            Close();
+        }
+        private void author_Click(object sender, RoutedEventArgs e)
+        {
+            WindowAuthor wAuth = new WindowAuthor();
+            wAuth.Show();
+            Close();
+        }
     }
 }

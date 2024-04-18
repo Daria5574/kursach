@@ -33,6 +33,7 @@ namespace kursach.View
             label8.Content = "Время на чтение";
             label9.Content = "О книге";
             label10.Content = "Возрастной рейтинг";
+            nameUser.Content = App.currentUser.FName;
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -40,6 +41,17 @@ namespace kursach.View
             wMainPage.Show();
             Close();
         }
-
+        private void favorite_Click(object sender, RoutedEventArgs e)
+        {
+            WindowFavorite wFav = new WindowFavorite();
+            wFav.Show();
+            Close();
+        }
+        private void author_Click(object sender, RoutedEventArgs e)
+        {
+            WindowAuthor wAuth = new WindowAuthor();
+            wAuth.Show();
+            Close();
+        }
     }
 }

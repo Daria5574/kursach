@@ -23,6 +23,7 @@ namespace kursach.View
         public WindowFavorite()
         {
             InitializeComponent();
+            nameUser.Content = App.currentUser.FName;
 
             DatabaseContext db = new DatabaseContext();
             var listViewData = from book in db.book
