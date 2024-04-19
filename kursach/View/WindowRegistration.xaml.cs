@@ -30,22 +30,6 @@ namespace kursach.View
             InitializeComponent();
 
             db = new DatabaseContext();
-
-            //List<User> users = db.Users.ToList();
-            //string str = "";
-            //foreach (User user in users)
-            //{
-            //    str += "Имя и фамилия: " + user.FName + " " + user.LName + user.Email;
-            //}
-            //example.Text = str;
-
-            //List<Author> a = db.author.ToList();
-            //string str2 = "";
-            //foreach (Author author in a)
-            //{
-            //    str2 += "Имя и фамилия: " + author.FName + " " + author.LName;
-            //}
-            //example.Text = str2;
         }
 
 

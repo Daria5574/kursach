@@ -59,5 +59,11 @@ namespace kursach.View
             wAuth.Show();
             Close();
         }
+        private void NavigateToUser(object sender, MouseButtonEventArgs e)
+        {
+            WindowUser wUser = new WindowUser();
+            wUser.Show();
+            Close();
+        }
     }
 }

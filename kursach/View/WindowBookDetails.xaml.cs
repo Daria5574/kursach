@@ -1,4 +1,5 @@
 ﻿using kursach.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,23 +14,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAddAuthor.xaml
+    /// Логика взаимодействия для WindowBookDetails.xaml
     /// </summary>
-    public partial class WindowAddAuthor : Window
+    public partial class WindowBookDetails : Window
     {
-        DatabaseContext db;
-        public WindowAddAuthor()
+        public WindowBookDetails(Book currentBook)
         {
             InitializeComponent();
-            db = new DatabaseContext();
+            DataContext = currentBook;
 
-            label1.Content = "Имя автора";
-            label2.Content = "Фамилия автора*";
-            label3.Content = "Об авторе";
-            nameUser.Content = App.currentUser.FName;
+            using (var db = new DatabaseContext())
+            {
+                var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
+                if (book != null)
+                {
+                    authorLabel.Content = book.Author.LName;
+                }
+            }
+            nameUser.Content = currentBook.Name;
+            //name.Content = currentBook.Name;
+
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -53,23 +61,6 @@ namespace kursach.View
         {
             WindowUser wUser = new WindowUser();
             wUser.Show();
-            Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string fname = textBox1.Text.Trim();
-            string lname = textBox2.Text.Trim();
-            string description = textBox3.Text.Trim();
-
-            Author author = new Author(fname, lname, description, App.currentUser.ID_User);
-            db.author.Add(author);
-            db.SaveChanges();
-
-            MessageBox.Show("Запись добавлена успешно");
-
-            WindowAuthor wAuth = new WindowAuthor();
-            wAuth.Show();
             Close();
         }
     }

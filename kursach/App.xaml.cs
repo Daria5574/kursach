@@ -15,6 +15,7 @@ namespace kursach
     public partial class App : Application
     {
         public static User currentUser = null;
+        public static Book currentBook = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

@@ -71,6 +71,6 @@
             </ListView>
 
         </StackPanel>
-        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top"/>
+        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
     </Grid>
 </Window>

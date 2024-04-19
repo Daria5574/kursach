@@ -1,4 +1,6 @@
-﻿using System;
+﻿using kursach.Model;
+using kursach.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -12,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace kursach.View
 {
@@ -20,9 +23,17 @@ namespace kursach.View
     /// </summary>
     public partial class WindowAddBook : Window
     {
+        DatabaseContext db;
         public WindowAddBook()
         {
             InitializeComponent();
+
+            var viewModel = new WindowAddBookViewModel();
+            db = new DatabaseContext();
+
+            CbAuthor.ItemsSource = db.author.Where(a => a.ID_User == App.currentUser.ID_User).ToList();
+            CbAuthor.DisplayMemberPath = "FullName";
+
             label1.Content = "Название*";
             label2.Content = "Путь к файлу*";
             label3.Content = "Автор";
@@ -52,6 +63,47 @@ namespace kursach.View
             WindowAuthor wAuth = new WindowAuthor();
             wAuth.Show();
             Close();
+        }
+        private void NavigateToUser(object sender, MouseButtonEventArgs e)
+        {
+            WindowUser wUser = new WindowUser();
+            wUser.Show();
+            Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string name = textBox1.Text.Trim();
+            string the_Path_To_The_File = textBox2.Text.Trim();
+
+            int id_Author = (CbAuthor.SelectedItem as Author)?.Id ?? 0;
+
+            int number_Of_Printed_Pages;
+            int date_Of_Writing;
+            int the_Year_Of_Publishing;
+            string isbn = textBox7.Text.Trim();
+            string time_To_Read = textBox8.Text.Trim();
+            string about_The_Book = textBox9.Text.Trim();
+            string age_Rating = textBox10.Text.Trim();
+            if (int.TryParse(textBox4.Text.Trim(), out number_Of_Printed_Pages) &&
+                int.TryParse(textBox5.Text.Trim(), out date_Of_Writing) &&
+                int.TryParse(textBox6.Text.Trim(), out the_Year_Of_Publishing))
+            {
+                Book book = new Book(name, id_Author, the_Path_To_The_File, null, number_Of_Printed_Pages, date_Of_Writing, the_Year_Of_Publishing, isbn, time_To_Read, about_The_Book, age_Rating, 0, App.currentUser.ID_User);
+                db.book.Add(book);
+                db.SaveChanges();
+
+                MessageBox.Show("Книга успешно добавлена");
+
+                WindowBook wBook = new WindowBook();
+                wBook.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, введите корректные значения.");
+            }
+           
         }
     }
 }

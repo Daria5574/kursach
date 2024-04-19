@@ -62,7 +62,7 @@
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="290,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" />
 
         <Label x:Name="label3" Content="Label 3" HorizontalAlignment="Left" Margin="290,218,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
-        <ComboBox x:Name="CbAuthor" Height="20" Width="500" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,241,0,0" DisplayMemberPath="LName"/>
+        <ComboBox x:Name="CbAuthor" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}"  Height="20" Width="500" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,241,0,0" DisplayMemberPath="LName"/>
 
         <Label x:Name="label4" Content="Label 4" HorizontalAlignment="Left" Margin="290,257,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
         <TextBox x:Name="textBox4" HorizontalAlignment="Left" Margin="290,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" />
@@ -84,9 +84,9 @@
 
         <Label x:Name ="label10" Content =" Label 10 " HorizontalAlignment =" Left " Margin =" 290 ,503 ,0 ,0 " VerticalAlignment ="Top" Foreground="#831A1A"/>
         <TextBox x:Name ="textBox10" HorizontalAlignment =" Left " Margin =" 290 ,526 ,0 ,0 " TextWrapping =" Wrap " VerticalAlignment =" Top " Width =" 500 "/>
-        <Button  Style="{StaticResource Save}" Content="Сохранить" HorizontalAlignment="Left" Margin="600,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356"/>
+        <Button  Style="{StaticResource Save}" Content="Сохранить" HorizontalAlignment="Left" Margin="600,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="Button_Click"/>
         <Button  Style="{StaticResource Save}" Content="Отменить" HorizontalAlignment="Left" Margin="706,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
-        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="740,8,0,0" VerticalAlignment="Top"/>
+        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
 
 
 

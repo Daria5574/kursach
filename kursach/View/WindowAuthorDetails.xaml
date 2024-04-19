@@ -1,13 +1,13 @@
-﻿<Window x:Class="kursach.View.WindowAddAuthor"
+﻿<Window x:Class="kursach.View.WindowAuthorDetails"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
-        Title="WindowAddAuthor" Height="450" Width="800">
+        Title="WindowAuthorDetails" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="Save">
+        <Style TargetType="Button" x:Key="AddEditDelete">
             <Setter Property="Background" Value="#FFEDCECE"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Template">
@@ -39,36 +39,22 @@
 
         </Style>
     </Window.Resources>
-    
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage">
+
+        <StackPanel Background="#E8CCFF" >
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
+
             </StackPanel>
+
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
-                <Label Content="Добавление автора" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="350,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Label Content="Мои авторы" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="410,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
             </StackPanel>
         </StackPanel>
-        <Rectangle Fill ="#FFC4C4" HorizontalAlignment="Left" Height="235" Margin="16,113,0,0" VerticalAlignment="Top" Width="208"/>
-        <Image Source="D:\3_курс\рпм\курсовой\add_image.jpg" HorizontalAlignment="Left" Height="183" Margin="50,139,0,0" VerticalAlignment="Top" Width="140"/>
-        <Rectangle Fill="#EFEAF3" Margin="266,113,24,80" />
-        <Label x:Name="label1" Content="Label 1" HorizontalAlignment="Left" Margin="290,135,0,0" VerticalAlignment="Top" Foreground="#831A1A" />
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="290,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
-
-        <Label x:Name="label2" Content="Label 2" HorizontalAlignment="Left" Margin="290,175,0,0" VerticalAlignment="Top" Foreground="#831A1A"  />
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="290,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
-
-        <Label x:Name="label3" Content="Label 3" HorizontalAlignment="Left" Margin="290,218,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="290,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
-        <Button Style="{StaticResource Save}"  Content="Сохранить" HorizontalAlignment="Left" Margin="545,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="Button_Click"/>
-        <Button Style="{StaticResource Save}"  Content="Отменить" HorizontalAlignment="Left" Margin="664,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
-
-
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
-
     </Grid>
 </Window>

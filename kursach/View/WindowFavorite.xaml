@@ -54,7 +54,8 @@
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
             </StackPanel>
-
+            <StackPanel  Background="White" Height="30">
+            </StackPanel>
 
             <ListView x:Name="lvMyBook" Background="#FFFFBB">
                 <ListView.View>
@@ -68,6 +69,7 @@
             </ListView>
 
         </StackPanel>
-        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top"/>
+        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
+        
     </Grid>
 </Window>

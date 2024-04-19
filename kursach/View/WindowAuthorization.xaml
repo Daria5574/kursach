@@ -50,8 +50,8 @@
         <Rectangle Fill="#FFFDF0F0" Margin="2,50,2,352" />
         <Rectangle Fill="#FFF6D8D8" Margin="34,82,37,24" />
         <Label Content="Вход" HorizontalAlignment="Left" Margin="59,107,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Microsoft Yi Baiti"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="74,155,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF831A1A"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF831A1A"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="77,148,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF831A1A" RenderTransformOrigin="0.598,0.57"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="77,226,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF831A1A"/>
         <Button Style="{StaticResource ButtonStyle}" Content="Войти" HorizontalAlignment="Left" Margin="646,331,0,0" VerticalAlignment="Top" Height="41" Width="88" FontSize="14" Click="Button_Auth_Click"/>
         <TextBox HorizontalAlignment="Left" Margin="74,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="40" x:Name="emailTextBox"/>
         <PasswordBox HorizontalAlignment="Left" Margin="74,255,0,0" VerticalAlignment="Top" Width="660" Height="40" x:Name="passwordTextBox"/>

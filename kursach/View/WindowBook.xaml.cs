@@ -27,7 +27,7 @@ namespace kursach.View
             DatabaseContext db = new DatabaseContext();
             var listViewData = from book in db.book
                                join author in db.author on book.ID_Author equals author.Id
-                               where book.ID_User == App.currentUser.ID_User 
+                               where book.ID_User == App.currentUser.ID_User
                                select new
                                {
                                    BookName = book.Name,
@@ -64,5 +64,39 @@ namespace kursach.View
             wAuth.Show();
             Close();
         }
+        private void NavigateToUser(object sender, MouseButtonEventArgs e)
+        {
+            WindowUser wUser = new WindowUser();
+            wUser.Show();
+            Close();
+        }
+        private bool isHandled = false;
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!isHandled)
+            {
+                isHandled = true;
+
+                if (sender is ListViewItem listViewItem)
+                {
+                    Book currentBook = null;
+                    using (DatabaseContext db = new DatabaseContext())
+                    {
+                        var selectedItem = listViewItem.Content as dynamic;
+
+                        string bookTitle = selectedItem.BookName; // Получаем название книги из анонимного типа
+
+                        // Проверяем, есть ли в базе данных книга с таким же названием
+                        currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
+
+                        WindowBookDetails wBookDetails = new WindowBookDetails(currentBook);
+                        wBookDetails.Show();
+                        Close();
+                    }
+                }
+            }
+        }
+
     }
 }

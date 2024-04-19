@@ -1,5 +1,4 @@
-﻿using kursach.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,19 +15,13 @@ using System.Windows.Shapes;
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAddAuthor.xaml
+    /// Логика взаимодействия для WindowAuthorDetails.xaml
     /// </summary>
-    public partial class WindowAddAuthor : Window
+    public partial class WindowAuthorDetails : Window
     {
-        DatabaseContext db;
-        public WindowAddAuthor()
+        public WindowAuthorDetails()
         {
             InitializeComponent();
-            db = new DatabaseContext();
-
-            label1.Content = "Имя автора";
-            label2.Content = "Фамилия автора*";
-            label3.Content = "Об авторе";
             nameUser.Content = App.currentUser.FName;
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
@@ -53,23 +46,6 @@ namespace kursach.View
         {
             WindowUser wUser = new WindowUser();
             wUser.Show();
-            Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string fname = textBox1.Text.Trim();
-            string lname = textBox2.Text.Trim();
-            string description = textBox3.Text.Trim();
-
-            Author author = new Author(fname, lname, description, App.currentUser.ID_User);
-            db.author.Add(author);
-            db.SaveChanges();
-
-            MessageBox.Show("Запись добавлена успешно");
-
-            WindowAuthor wAuth = new WindowAuthor();
-            wAuth.Show();
             Close();
         }
     }
