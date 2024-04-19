@@ -5,10 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
-        Title="WindowBookDetails" Height="450" Width="800">
+        Title="WindowBookDetails" Height="650" Width="800">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="AddEditDelete">
+        <Style TargetType="Button" x:Key="themes">
             <Setter Property="Background" Value="#FFEDCECE"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,5"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFDF0F0"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+        
+        <Style TargetType="Button" x:Key="read">
+            <Setter Property="Background" Value="#BEFFF3"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -41,20 +61,30 @@
     </Window.Resources>
     <Grid>
 
-        <StackPanel Background="#E8CCFF" >
+        <StackPanel Background="#FFFFFF" Margin="0,-3,0,3" >
             <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
-                <Label Content="Мои авторы" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="410,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+            <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36" Width="818">
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="550,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
             </StackPanel>
+
+
+
         </StackPanel>
+        <Rectangle Fill="#FCF4F4" Margin="33,108,591,259"/>
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
-        <Label x:Name ="authorLabel" Content="Label" HorizontalAlignment="Left" Margin="100,176,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nameBook"  FontSize="28" Content="Label" HorizontalAlignment="Left" Margin="240,108,0,0" VerticalAlignment="Top" Height="42"/>
+        <Label x:Name ="authorLabel" FontSize="16" Content="Label" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Foreground="#5F1414"/>
+        <Image x:Name ="coverBook" HorizontalAlignment="Left" Height="210" Margin="48,124,0,0" VerticalAlignment="Top" Width="158"/>
+        <Label x:Name="pagesBook" Content="896 печатных страниц" HorizontalAlignment="Left" Margin="240,181,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="timeBook" Content="Время чтения ~ 7ч." HorizontalAlignment="Left" Margin="400,181,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="yearBook" Content="Label" HorizontalAlignment="Left" Margin="544,181,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ratingBook" Content="Label" HorizontalAlignment="Left" Margin="621,181,0,0" VerticalAlignment="Top"/>
+        <ItemsControl Margin="226,212,122,259" x:Name="itemsControl"> </ItemsControl>
     </Grid>
 </Window>

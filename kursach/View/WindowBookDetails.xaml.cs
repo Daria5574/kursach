@@ -32,11 +32,67 @@ namespace kursach.View
                 var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
                 if (book != null)
                 {
-                    authorLabel.Content = book.Author.LName;
+                    authorLabel.Content = book.Author.FName + " " + book.Author.LName;
                 }
             }
-            nameUser.Content = currentBook.Name;
+            nameUser.Content = App.currentUser.FName; ;
+            nameBook.Content = currentBook.Name;
+            BitmapImage bitmap = new BitmapImage(new Uri(currentBook.Cover));
+            coverBook.Source = bitmap;
+            pagesBook.Content = currentBook.Number_Of_Printed_Pages + " печатных страниц";
+            timeBook.Content = "Время чтения ≈ " + currentBook.Time_To_Read;
+            yearBook.Content = currentBook.The_Year_Of_Publishing + " год";
+            ratingBook.Content = currentBook.Age_Rating;
             //name.Content = currentBook.Name;
+
+            using (var db = new DatabaseContext())
+            {
+                var bookWithThemes = db.book_theme
+                    .Include(bt => bt.Theme) // Включаем связанные записи Theme
+                    .Where(bt => bt.ID_Book == currentBook.Id)
+                    .Select(bt => new
+                    {
+                        BookId = bt.ID_Book,
+                        Theme = bt.Theme
+                    })
+                    .ToList();
+
+
+                if (bookWithThemes != null && bookWithThemes.Count > 0) // Проверяем наличие данных
+                {
+                    WrapPanel wrapPanel = new WrapPanel() // Используем WrapPanel для расположения в ряд
+                    {
+                        Orientation = Orientation.Horizontal, // Горизонтальное расположение элементов
+                        Margin = new Thickness(10)
+                    };
+
+                    foreach (var item in bookWithThemes)
+                    {
+                        var theme = item.Theme;
+
+                        Button button = new Button
+                        {
+                            Content = theme.Name, // Текст на кнопке
+                            Height = 30,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch, // Растягиваем содержимое по горизонтали
+                            Margin = new Thickness(5), // Добавляем отступы между кнопками
+                            Style = (Style)FindResource("themes")                         // ... (стили для кнопки по желанию)
+                        };
+
+                        // Обработчик события нажатия (добавьте свою логику перехода на страницу)
+                        button.Click += (sender, e) =>
+                        {
+                            // ... (логика перехода на страницу с книгами по теме)
+                        };
+
+                        wrapPanel.Children.Add(button);
+                    }
+
+                    // Добавляем WrapPanel в ItemsControl
+                    itemsControl.Items.Add(wrapPanel);
+                }
+            }
+
 
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
