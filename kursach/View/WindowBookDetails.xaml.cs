@@ -26,15 +26,6 @@ namespace kursach.View
         {
             InitializeComponent();
             DataContext = currentBook;
-
-            using (var db = new DatabaseContext())
-            {
-                var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
-                if (book != null)
-                {
-                    authorLabel.Content = book.Author.FName + " " + book.Author.LName;
-                }
-            }
             nameUser.Content = App.currentUser.FName; ;
             nameBook.Content = currentBook.Name;
             BitmapImage bitmap = new BitmapImage(new Uri(currentBook.Cover));
@@ -43,10 +34,13 @@ namespace kursach.View
             timeBook.Content = "Время чтения ≈ " + currentBook.Time_To_Read;
             yearBook.Content = currentBook.The_Year_Of_Publishing + " год";
             ratingBook.Content = currentBook.Age_Rating;
-            //name.Content = currentBook.Name;
-
             using (var db = new DatabaseContext())
             {
+                var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
+                if (book != null)
+                {
+                    authorLabel.Content = book.Author.FName + " " + book.Author.LName;
+                }
                 var bookWithThemes = db.book_theme
                     .Include(bt => bt.Theme) // Включаем связанные записи Theme
                     .Where(bt => bt.ID_Book == currentBook.Id)
@@ -72,11 +66,11 @@ namespace kursach.View
 
                         Button button = new Button
                         {
-                            Content = theme.Name, // Текст на кнопке
+                            Content = theme.Name,
                             Height = 30,
                             HorizontalContentAlignment = HorizontalAlignment.Stretch, // Растягиваем содержимое по горизонтали
                             Margin = new Thickness(5), // Добавляем отступы между кнопками
-                            Style = (Style)FindResource("themes")                         // ... (стили для кнопки по желанию)
+                            Style = (Style)FindResource("themes")
                         };
 
                         // Обработчик события нажатия (добавьте свою логику перехода на страницу)
@@ -91,10 +85,37 @@ namespace kursach.View
                     // Добавляем WrapPanel в ItemsControl
                     itemsControl.Items.Add(wrapPanel);
                 }
-            }
+                SetFavoriteButtonState(favoriteButton, currentBook.Is_Favorite);
+                favoriteButton.Click += async (sender, e) =>
+                {
+                    // Меняем значение is_Favorite
+                    currentBook.Is_Favorite = currentBook.Is_Favorite == 0 ? 1 : 0;
 
+                    // Обновляем состояние кнопки
+                    SetFavoriteButtonState(favoriteButton, currentBook.Is_Favorite);
 
+                    // Сохраняем изменения в базе данных (используем тот же контекст db)
+                    await db.SaveChangesAsync();
+                };
         }
+
+            // Метод для установки состояния кнопки
+            void SetFavoriteButtonState(Button button, int isFavorite)
+            {
+                if (isFavorite == 1)
+                {
+                    // Книга в избранном
+                    button.Background = Brushes.Yellow; // Или установите картинку
+                }
+                else
+                {
+                    // Книга не в избранном
+                    button.Background = Brushes.Gray; // Или установите картинку
+                }
+            }
+        }
+
+        
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowBook wMainPage = new WindowBook();

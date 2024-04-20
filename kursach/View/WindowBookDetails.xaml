@@ -26,7 +26,7 @@
             </Style.Triggers>
 
         </Style>
-        
+
         <Style TargetType="Button" x:Key="read">
             <Setter Property="Background" Value="#BEFFF3"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -75,6 +75,7 @@
 
 
 
+
         </StackPanel>
         <Rectangle Fill="#FCF4F4" Margin="33,108,591,259"/>
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
@@ -85,6 +86,9 @@
         <Label x:Name="timeBook" Content="Время чтения ~ 7ч." HorizontalAlignment="Left" Margin="400,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="yearBook" Content="Label" HorizontalAlignment="Left" Margin="544,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="ratingBook" Content="Label" HorizontalAlignment="Left" Margin="621,181,0,0" VerticalAlignment="Top"/>
-        <ItemsControl Margin="226,212,122,259" x:Name="itemsControl"> </ItemsControl>
+        <ItemsControl Margin="226,252,122,259" x:Name="itemsControl"></ItemsControl>
+        <Button Content="Читать" FontSize="16" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="580,124,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="favoriteButton" Content="Избранное" FontSize="16" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="674,124,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

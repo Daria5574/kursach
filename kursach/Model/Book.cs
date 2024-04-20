@@ -136,8 +136,8 @@ namespace kursach.Model
             }
         }
 
-        private int? is_Favorite;
-        public int? Is_Favorite
+        private int is_Favorite;
+        public int Is_Favorite
         {
             get { return is_Favorite; }
             set
@@ -186,38 +186,38 @@ int is_Favorite, int iD_User)
             this.Is_Favorite = is_Favorite;
             this.ID_User = iD_User;
         }
-        public Book CopyFromBookDPO(BookDPO b)
-        {
-            AuthorViewModel vmAuthor = new AuthorViewModel();
-            int authorId = 0;
-            foreach (var a in vmAuthor.ListAuthor)
-            {
-                if (a.LName == b.ID_Author)
-                {
-                    authorId = a.Id;
-                    break;
-                }
-            }
-            if (authorId != 0)
-            {
-                this.Id = b.Id;
-                this.Name = b.Name;
-                this.ID_Author = authorId;
-                this.The_Path_To_The_File = b.The_Path_To_The_File;
-                this.Cover = b.Cover;
-                this.Number_Of_Printed_Pages = b.Number_Of_Printed_Pages;
-                this.Date_Of_Writing = b.Date_Of_Writing;
-                this.The_Year_Of_Publishing = b.The_Year_Of_Publishing;
-                this.ISBN = b.ISBN;
-                this.Time_To_Read = b.Time_To_Read;
-                this.About_The_Book = b.About_The_Book;
-                this.Age_Rating = b.Age_Rating;
-                this.Is_Favorite = b.Is_Favorite;
-                this.ID_User = b.ID_User; //----!!!!!!!!
+        //public Book CopyFromBookDPO(BookDPO b)
+        //{
+        //    AuthorViewModel vmAuthor = new AuthorViewModel();
+        //    int authorId = 0;
+        //    foreach (var a in vmAuthor.ListAuthor)
+        //    {
+        //        if (a.LName == b.ID_Author)
+        //        {
+        //            authorId = a.Id;
+        //            break;
+        //        }
+        //    }
+        //    if (authorId != 0)
+        //    {
+        //        this.Id = b.Id;
+        //        this.Name = b.Name;
+        //        this.ID_Author = authorId;
+        //        this.The_Path_To_The_File = b.The_Path_To_The_File;
+        //        this.Cover = b.Cover;
+        //        this.Number_Of_Printed_Pages = b.Number_Of_Printed_Pages;
+        //        this.Date_Of_Writing = b.Date_Of_Writing;
+        //        this.The_Year_Of_Publishing = b.The_Year_Of_Publishing;
+        //        this.ISBN = b.ISBN;
+        //        this.Time_To_Read = b.Time_To_Read;
+        //        this.About_The_Book = b.About_The_Book;
+        //        this.Age_Rating = b.Age_Rating;
+        //        this.Is_Favorite = b.Is_Favorite;
+        //        this.ID_User = b.ID_User; //----!!!!!!!!
 
-            }
-            return this;
-        }
+        //    }
+        //    return this;
+        //}
         public Book ShallowCopy()
         {
             return (Book)this.MemberwiseClone();
