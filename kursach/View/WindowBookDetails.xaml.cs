@@ -28,10 +28,14 @@ namespace kursach.View
             DataContext = currentBook;
             nameUser.Content = App.currentUser.FName; ;
             nameBook.Content = currentBook.Name;
-            BitmapImage bitmap = new BitmapImage(new Uri(currentBook.Cover));
-            coverBook.Source = bitmap;
+
+            if (currentBook.Cover != null)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(currentBook.Cover));
+                coverBook.Source = bitmap;
+            }
             pagesBook.Content = currentBook.Number_Of_Printed_Pages + " печатных страниц";
-            timeBook.Content = "Время чтения ≈ " + currentBook.Time_To_Read;
+            timeBook.Content = "Время чтения " + currentBook.Time_To_Read;
             yearBook.Content = currentBook.The_Year_Of_Publishing + " год";
             ratingBook.Content = currentBook.Age_Rating;
             aboutBook.Text = currentBook.About_The_Book;
@@ -42,6 +46,7 @@ namespace kursach.View
                 {
                     authorLabel.Content = book.Author.FName + " " + book.Author.LName;
                 }
+
                 var bookWithThemes = db.book_theme
                     .Include(bt => bt.Theme) // Включаем связанные записи Theme
                     .Where(bt => bt.ID_Book == currentBook.Id)
@@ -85,10 +90,10 @@ namespace kursach.View
                     // Добавляем WrapPanel в ItemsControl
                     itemsControl.Items.Add(wrapPanel);
                 }
-        }
+            }
             if (currentBook.Is_Favorite == 1)
             {
-                FavoriteButton.Content = "★;";
+                FavoriteButton.Content = "★ :)";
                 FavoriteButton.Style = (Style)FindResource("yellow");
             }
             else
@@ -122,10 +127,10 @@ namespace kursach.View
                     FavoriteButton.Style = (Style)FindResource("gray");
                 }
             };
-    }
+        }
 
 
-    private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
+        private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowBook wMainPage = new WindowBook();
             wMainPage.Show();
@@ -149,6 +154,12 @@ namespace kursach.View
             wUser.Show();
             Close();
         }
+        private void theme_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
         private void NavigateToAuthor(object sender, MouseButtonEventArgs e)
         {
             Author currentAuthor = null;
@@ -166,5 +177,6 @@ namespace kursach.View
                 Close();
             }
         }
+
     }
 }

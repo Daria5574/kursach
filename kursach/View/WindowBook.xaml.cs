@@ -64,6 +64,7 @@ namespace kursach.View
             wAuth.Show();
             Close();
         }
+
         private void NavigateToUser(object sender, MouseButtonEventArgs e)
         {
             WindowUser wUser = new WindowUser();
@@ -71,28 +72,27 @@ namespace kursach.View
             Close();
         }
 
-
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-                if (sender is ListViewItem listViewItem)
+            if (sender is ListViewItem listViewItem)
+            {
+                Book currentBook = null;
+                using (DatabaseContext db = new DatabaseContext())
                 {
-                    Book currentBook = null;
-                    using (DatabaseContext db = new DatabaseContext())
-                    {
-                        var selectedItem = listViewItem.Content as dynamic;
+                    var selectedItem = listViewItem.Content as dynamic;
 
-                        string bookTitle = selectedItem.BookName; // Получаем название книги из анонимного типа
+                    string bookTitle = selectedItem.BookName; // Получаем название книги из анонимного типа
 
-                        // Проверяем, есть ли в базе данных книга с таким же названием
-                        currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
+                    // Проверяем, есть ли в базе данных книга с таким же названием
+                    currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
 
-                        WindowBookDetails wBookDetails = new WindowBookDetails(currentBook);
-                        wBookDetails.Show();
-                        Close();
-                    }
+                    WindowBookDetails wBookDetails = new WindowBookDetails(currentBook);
+                    wBookDetails.Show();
+                    Close();
                 }
             }
+        }
 
     }
- }
+}
 

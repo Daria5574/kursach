@@ -109,9 +109,9 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36" Width="818">
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="550,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="610,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
-                <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
+                <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
             </StackPanel>
         </StackPanel>
         <Rectangle Fill="#FCF4F4" Margin="33,108,591,259"/>

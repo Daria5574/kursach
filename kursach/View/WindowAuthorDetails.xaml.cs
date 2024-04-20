@@ -61,6 +61,12 @@ namespace kursach.View
             wUser.Show();
             Close();
         }
+        private void theme_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is ListViewItem listViewItem)
@@ -81,5 +87,6 @@ namespace kursach.View
                 }
             }
         }
+
     }
 }

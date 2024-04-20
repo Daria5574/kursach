@@ -48,7 +48,6 @@ namespace kursach.View
                 passwordTextBox.ToolTip = "Пароль должен быть длиной 6 символов или больше!";
                 passwordTextBox.Background = Brushes.LightCoral;
             }
-
             else
             {
                 emailTextBox.ToolTip = "";
@@ -71,7 +70,7 @@ namespace kursach.View
                     Close();
                 }
                 else
-                    MessageBox.Show("Пользователь с такой почтой и паролем не найден."); 
+                    MessageBox.Show("Пользователь с такой почтой и паролем не найден.");
             }
         }
     }

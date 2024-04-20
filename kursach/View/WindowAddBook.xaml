@@ -41,19 +41,19 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-        <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage">
-            <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
-            <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage">
+                <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
+                <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
                 <Label Content="Добавление книги" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="410,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="460,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
-                <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
+                <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
             </StackPanel>
         </StackPanel>
-        <Rectangle Fill ="#FFC4C4" HorizontalAlignment="Left" Height="235" Margin="16,113,0,0" VerticalAlignment="Top" Width="208"/>
-        <Image Source="D:\3_курс\рпм\курсовой\add_image.jpg" HorizontalAlignment="Left" Height="183" Margin="50,139,0,0" VerticalAlignment="Top" Width="140"/>
+        <Rectangle Fill ="#FFC4C4" HorizontalAlignment="Left" Height="267" Margin="16,113,0,0" VerticalAlignment="Top" Width="231"/>
+        <Image Source="D:\3_курс\рпм\курсовой\add_image.jpg" MouseLeftButtonDown="SelectImageButton_Click" HorizontalAlignment="Left" Margin="50,139,0,0" VerticalAlignment="Top" Height="210" Width="158" x:Name="imageControl"/>
         <Rectangle Fill="#EFEAF3" Margin="266,113,24,80" />
         <Label x:Name="label1" Content="Label 1" HorizontalAlignment="Left" Margin="290,135,0,0" VerticalAlignment="Top" Foreground="#831A1A" />
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="290,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" />

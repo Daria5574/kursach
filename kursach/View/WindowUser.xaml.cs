@@ -50,5 +50,12 @@ namespace kursach.View
             wAuth.Show();
             Close();
         }
+
+        private void theme_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
     }
 }

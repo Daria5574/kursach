@@ -56,6 +56,13 @@ namespace kursach.View
             Close();
         }
 
+        private void theme_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string fname = textBox1.Text.Trim();
@@ -72,5 +79,6 @@ namespace kursach.View
             wAuth.Show();
             Close();
         }
+
     }
 }

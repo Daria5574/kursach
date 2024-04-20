@@ -17,6 +17,7 @@ namespace kursach
         public static User currentUser = null;
         public static Book currentBook = null;
         public static Author currentAuthor = null;
+        public static Theme currentTheme = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

@@ -22,7 +22,6 @@ namespace kursach.View
     /// </summary>
     public partial class WindowRegistration : Window
     {
-
         DatabaseContext db;
 
         public WindowRegistration()
@@ -31,7 +30,6 @@ namespace kursach.View
 
             db = new DatabaseContext();
         }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -49,9 +49,9 @@
 
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
                 <Label Content="Мой профиль" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="400,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="460,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
-                <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
+                <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
             </StackPanel>
 
 
