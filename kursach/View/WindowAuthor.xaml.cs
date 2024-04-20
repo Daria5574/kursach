@@ -29,7 +29,7 @@ namespace kursach.View
                 .Where(b => b.ID_User == App.currentUser.ID_User)
                 .Select(b => new Author { FName = b.FName + " " + b.LName })
                 .ToList();
-            lvMyBook.ItemsSource = authors;
+            lvMyAuthor.ItemsSource = authors;
         }
 
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
@@ -88,6 +88,22 @@ namespace kursach.View
                 }
             }
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+                if (lvMyAuthor.SelectedItem != null)
+                {
+                Author selectedAuthor = lvMyAuthor.SelectedItem as Author;
+                    //Trainer selectedTrainer = lvTrainer.SelectedItem as Trainer;
+                    WindowEditAuthor wEditTrainer = new WindowEditAuthor(selectedAuthor);
+                    wEditTrainer.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста, выберите клиента для редактирования");
+                }
+            }
 
     }
 }

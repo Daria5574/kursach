@@ -91,7 +91,7 @@ namespace kursach.View
                 db.book.Add(book);
                 db.SaveChanges();
 
-                MessageBox.Show("Книга успешно добавлена");
+                MessageBox.Show("Книга успешно добавлена.");
 
                 WindowBook wBook = new WindowBook();
                 wBook.Show();
@@ -99,7 +99,7 @@ namespace kursach.View
             }
             else
             {
-                MessageBox.Show("Пожалуйста, введите корректные значения.");
+                MessageBox.Show("Введите корректные значения.");
             }
         }
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
