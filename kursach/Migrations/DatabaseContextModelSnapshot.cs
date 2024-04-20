@@ -79,7 +79,7 @@ namespace kursach.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Is_Favorite")
+                    b.Property<int>("Is_Favorite")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

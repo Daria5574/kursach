@@ -34,6 +34,7 @@ namespace kursach.View
             timeBook.Content = "Время чтения ≈ " + currentBook.Time_To_Read;
             yearBook.Content = currentBook.The_Year_Of_Publishing + " год";
             ratingBook.Content = currentBook.Age_Rating;
+            aboutBook.Text = currentBook.About_The_Book;
             using (var db = new DatabaseContext())
             {
                 var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
@@ -85,38 +86,49 @@ namespace kursach.View
                     // Добавляем WrapPanel в ItemsControl
                     itemsControl.Items.Add(wrapPanel);
                 }
-                SetFavoriteButtonState(favoriteButton, currentBook.Is_Favorite);
-                favoriteButton.Click += async (sender, e) =>
-                {
-                    // Меняем значение is_Favorite
-                    currentBook.Is_Favorite = currentBook.Is_Favorite == 0 ? 1 : 0;
-
-                    // Обновляем состояние кнопки
-                    SetFavoriteButtonState(favoriteButton, currentBook.Is_Favorite);
-
-                    // Сохраняем изменения в базе данных (используем тот же контекст db)
-                    await db.SaveChangesAsync();
-                };
         }
-
-            // Метод для установки состояния кнопки
-            void SetFavoriteButtonState(Button button, int isFavorite)
+            if (currentBook.Is_Favorite == 1)
             {
-                if (isFavorite == 1)
+                FavoriteButton.Content = "★;";
+                FavoriteButton.Style = (Style)FindResource("yellow");
+            }
+            else
+            {
+                FavoriteButton.Content = "☆";
+                FavoriteButton.Style = (Style)FindResource("gray");
+            }
+
+            FavoriteButton.Click += async (sender, e) =>
+            {
+                // Изменяем значение Is_Favorite (переключение между 0 и 1)
+                currentBook.Is_Favorite = currentBook.Is_Favorite == 0 ? 1 : 0;
+
+                // Сохраняем изменения в базе данных асинхронно
+                using (var db = new DatabaseContext())
                 {
-                    // Книга в избранном
-                    button.Background = Brushes.Yellow; // Или установите картинку
+                    db.book.Attach(currentBook); // Присоединяем currentBook к контексту
+                    db.Entry(currentBook).State = EntityState.Modified; // Указываем, что объект был изменен
+                    await db.SaveChangesAsync();
+                }
+
+                // Обновляем стиль и содержимое кнопки в зависимости от Is_Favorite
+                if (currentBook.Is_Favorite == 1)
+                {
+                    FavoriteButton.Content = "★;";
+                    FavoriteButton.Style = (Style)FindResource("yellow");
                 }
                 else
                 {
-                    // Книга не в избранном
-                    button.Background = Brushes.Gray; // Или установите картинку
+                    FavoriteButton.Content = "☆";
+                    FavoriteButton.Style = (Style)FindResource("gray");
                 }
-            }
-        }
-
+            };
         
-        private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
+
+    }
+
+
+    private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowBook wMainPage = new WindowBook();
             wMainPage.Show();

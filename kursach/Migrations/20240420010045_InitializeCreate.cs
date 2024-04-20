@@ -4,7 +4,7 @@
 
 namespace kursach.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitializeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -129,7 +129,7 @@ namespace kursach.Migrations
                     Time_To_Read = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     About_The_Book = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age_Rating = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Is_Favorite = table.Column<int>(type: "int", nullable: true),
+                    Is_Favorite = table.Column<int>(type: "int", nullable: false),
                     ID_User = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

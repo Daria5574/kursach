@@ -1,4 +1,5 @@
-﻿using System;
+﻿using kursach.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace kursach.View
     /// </summary>
     public partial class WindowAuthorDetails : Window
     {
-        public WindowAuthorDetails()
+        public WindowAuthorDetails(Author currentAuthor)
         {
             InitializeComponent();
             nameUser.Content = App.currentUser.FName;

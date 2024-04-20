@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System.Windows.Documents;assembly=PresentationFramework"
         xmlns:local="clr-namespace:kursach.View"
         mc:Ignorable="d"
         Title="WindowBookDetails" Height="650" Width="800">
@@ -10,6 +11,7 @@
         <Style TargetType="Button" x:Key="themes">
             <Setter Property="Background" Value="#FFEDCECE"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -44,8 +46,47 @@
                     <Setter Property="Background" Value="#FFFDF0F0"/>
                 </Trigger>
             </Style.Triggers>
-
         </Style>
+
+
+        <Style TargetType="Button" x:Key="gray">
+            <Setter Property="Background" Value="#D8D8D8"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,5"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F0F0F0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="yellow">
+            <Setter Property="Background" Value="#FDE910"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,5"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFF99"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="Button" x:Key="menu">
             <Setter Property="Background" Value="#FCF9F8"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -72,23 +113,21 @@
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Книжные полки" Height="25"></Button>
             </StackPanel>
-
-
-
-
         </StackPanel>
         <Rectangle Fill="#FCF4F4" Margin="33,108,591,259"/>
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
-        <Label x:Name="nameBook"  FontSize="28" Content="Label" HorizontalAlignment="Left" Margin="240,108,0,0" VerticalAlignment="Top" Height="42"/>
-        <Label x:Name ="authorLabel" FontSize="16" Content="Label" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Foreground="#5F1414"/>
+        <Label x:Name="nameBook"  FontSize="28" Content="Label" HorizontalAlignment="Left" Margin="240,108,0,0" VerticalAlignment="Top" Height="47"/>
+        <Label x:Name ="authorLabel" FontSize="16" Content="Label" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Foreground="#5F1414" Height="31"/>
         <Image x:Name ="coverBook" HorizontalAlignment="Left" Height="210" Margin="48,124,0,0" VerticalAlignment="Top" Width="158"/>
         <Label x:Name="pagesBook" Content="896 печатных страниц" HorizontalAlignment="Left" Margin="240,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="timeBook" Content="Время чтения ~ 7ч." HorizontalAlignment="Left" Margin="400,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="yearBook" Content="Label" HorizontalAlignment="Left" Margin="544,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="ratingBook" Content="Label" HorizontalAlignment="Left" Margin="621,181,0,0" VerticalAlignment="Top"/>
-        <ItemsControl Margin="226,252,122,259" x:Name="itemsControl"></ItemsControl>
-        <Button Content="Читать" FontSize="16" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="580,124,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="favoriteButton" Content="Избранное" FontSize="16" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="674,124,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="abBook" Content="О книге" FontSize="18" HorizontalAlignment="Left" Margin="33,380,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="aboutBook" FontSize="14" Text="Text" HorizontalAlignment="Left" Margin="33,423,0,0" VerticalAlignment="Top" Height="180" Width="728" TextWrapping="Wrap"/>
+        <ItemsControl Margin="232,256,63,259" x:Name="itemsControl"></ItemsControl>
+        <Button Content="Читать" FontSize="18" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="278,218,0,0" VerticalAlignment="Top" Height="38"/>
+        <Button x:Name="FavoriteButton" FontSize="18" Content="★" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

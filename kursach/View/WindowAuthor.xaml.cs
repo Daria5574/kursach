@@ -65,5 +65,25 @@ namespace kursach.View
             wUser.Show();
             Close();
         }
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem listViewItem)
+            {
+                Author currentAuthor = null;
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    var selectedItem = listViewItem.Content as dynamic;
+
+                    string fname = selectedItem.FName + " " + selectedItem.LName ; // Получаем название книги из анонимного типа
+
+                    // Проверяем, есть ли в базе данных книга с таким же названием
+                   currentAuthor = db.author.FirstOrDefault(a => a.FName + " " + a.LName == fname);
+
+                  WindowAuthorDetails wAuthDetails = new WindowAuthorDetails(currentAuthor);
+                    wAuthDetails.Show();
+                    Close();
+                }
+            }
+        }
     }
 }

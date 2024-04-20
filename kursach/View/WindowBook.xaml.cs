@@ -70,14 +70,10 @@ namespace kursach.View
             wUser.Show();
             Close();
         }
-        private bool isHandled = false;
+
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (!isHandled)
-            {
-                isHandled = true;
-
                 if (sender is ListViewItem listViewItem)
                 {
                     Book currentBook = null;
@@ -96,7 +92,7 @@ namespace kursach.View
                     }
                 }
             }
-        }
 
-    }
-}
+        }
+ }
+

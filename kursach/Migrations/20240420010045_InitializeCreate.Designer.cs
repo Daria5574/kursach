@@ -12,8 +12,8 @@ using kursach.Model;
 namespace kursach.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240419095825_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240420010045_InitializeCreate")]
+    partial class InitializeCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,7 +81,7 @@ namespace kursach.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Is_Favorite")
+                    b.Property<int>("Is_Favorite")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
