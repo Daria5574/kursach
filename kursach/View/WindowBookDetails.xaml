@@ -117,7 +117,7 @@
         <Rectangle Fill="#FCF4F4" Margin="33,108,591,259"/>
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
         <Label x:Name="nameBook"  FontSize="28" Content="Label" HorizontalAlignment="Left" Margin="240,108,0,0" VerticalAlignment="Top" Height="47"/>
-        <Label x:Name ="authorLabel" FontSize="16" Content="Label" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Foreground="#5F1414" Height="31"/>
+        <Label x:Name ="authorLabel" FontSize="16" Content="Label" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Foreground="#5F1414" Height="31" MouseLeftButtonDown="NavigateToAuthor"/>
         <Image x:Name ="coverBook" HorizontalAlignment="Left" Height="210" Margin="48,124,0,0" VerticalAlignment="Top" Width="158"/>
         <Label x:Name="pagesBook" Content="896 печатных страниц" HorizontalAlignment="Left" Margin="240,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="timeBook" Content="Время чтения ~ 7ч." HorizontalAlignment="Left" Margin="400,181,0,0" VerticalAlignment="Top"/>

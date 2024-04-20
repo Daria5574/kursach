@@ -52,7 +52,6 @@ namespace kursach.View
                     })
                     .ToList();
 
-
                 if (bookWithThemes != null && bookWithThemes.Count > 0) // Проверяем наличие данных
                 {
                     WrapPanel wrapPanel = new WrapPanel() // Используем WrapPanel для расположения в ряд
@@ -123,8 +122,6 @@ namespace kursach.View
                     FavoriteButton.Style = (Style)FindResource("gray");
                 }
             };
-        
-
     }
 
 
@@ -151,6 +148,23 @@ namespace kursach.View
             WindowUser wUser = new WindowUser();
             wUser.Show();
             Close();
+        }
+        private void NavigateToAuthor(object sender, MouseButtonEventArgs e)
+        {
+            Author currentAuthor = null;
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                var authorh = authorLabel.Content as dynamic;
+
+                string fname = authorh; // Получаем название книги из анонимного типа
+
+                // Проверяем, есть ли в базе данных книга с таким же названием
+                currentAuthor = db.author.FirstOrDefault(a => a.FName + " " + a.LName == fname);
+                WindowAuthorDetails wAuthor = new WindowAuthorDetails(currentAuthor);
+                wAuthor.Show();
+                Close();
+            }
         }
     }
 }

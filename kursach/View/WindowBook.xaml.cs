@@ -93,6 +93,6 @@ namespace kursach.View
                 }
             }
 
-        }
+    }
  }
 

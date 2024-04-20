@@ -24,6 +24,18 @@ namespace kursach.View
         {
             InitializeComponent();
             nameUser.Content = App.currentUser.FName;
+            nameAuthor.Content = currentAuthor.FName + " " + currentAuthor.LName;
+            descriptionAuthor.Text = currentAuthor.Description;
+            DatabaseContext db = new DatabaseContext();
+            var listViewData = from book in db.book
+                               join author in db.author on book.ID_Author equals author.Id
+                               where book.ID_User == App.currentUser.ID_User && author.Id == currentAuthor.Id
+                               select new
+                               {
+                                   BookName = book.Name,
+                               };
+
+            lvAuthorBooks.ItemsSource = listViewData.ToList();
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -48,6 +60,26 @@ namespace kursach.View
             WindowUser wUser = new WindowUser();
             wUser.Show();
             Close();
+        }
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem listViewItem)
+            {
+                Book currentBook = null;
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    var selectedItem = listViewItem.Content as dynamic;
+
+                    string bookTitle = selectedItem.BookName; // Получаем название книги из анонимного типа
+
+                    // Проверяем, есть ли в базе данных книга с таким же названием
+                    currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
+
+                    WindowBookDetails wBookDetails = new WindowBookDetails(currentBook);
+                    wBookDetails.Show();
+                    Close();
+                }
+            }
         }
     }
 }
