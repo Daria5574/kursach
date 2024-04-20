@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,16 +27,28 @@ namespace kursach.View
     public partial class WindowAddBook : Window
     {
         DatabaseContext db;
+        int id_Author;
         private string selectedImagePath;
+        List<Author> authors;
         public WindowAddBook()
         {
             InitializeComponent();
 
             var viewModel = new WindowAddBookViewModel();
             db = new DatabaseContext();
+            var authors = db.author
+                .Where(a => a.ID_User == App.currentUser.ID_User)
+                .Select(a => new { FullName = a.Id + ". " + a.FName + " " + a.LName, Author = a })
+                .ToList();
 
-            CbAuthor.ItemsSource = db.author.Where(a => a.ID_User == App.currentUser.ID_User).ToList();
+            CbAuthor.ItemsSource = authors;
             CbAuthor.DisplayMemberPath = "FullName";
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(CbAuthor.ItemsSource);
+            view.Refresh();
+
+
+
+            //CbAuthor.DisplayMemberPath = "FullName";
 
             label1.Content = "Название*";
             label2.Content = "Путь к файлу*";
@@ -54,16 +67,21 @@ namespace kursach.View
         {
             string name = textBox1.Text.Trim();
             string the_Path_To_The_File = textBox2.Text.Trim();
+            string selectedAuthorName = CbAuthor.SelectedItem.ToString();
 
-            int id_Author = (CbAuthor.SelectedItem as Author)?.Id ?? 0;
+            // Находим позицию точки в выбранном значении
+            int dotIndex = selectedAuthorName.IndexOf('.');
+            string id_AuthorString = selectedAuthorName.Substring(0, dotIndex).Trim();
+            id_AuthorString = Regex.Match(id_AuthorString, @"\d+").Value;
+            int id_Author = int.Parse(id_AuthorString);
 
-            int number_Of_Printed_Pages;
-            int date_Of_Writing;
-            int the_Year_Of_Publishing;
             string isbn = textBox7.Text.Trim();
             string time_To_Read = textBox8.Text.Trim();
             string about_The_Book = textBox9.Text.Trim();
             string age_Rating = textBox10.Text.Trim();
+            int number_Of_Printed_Pages;
+            int date_Of_Writing;
+            int the_Year_Of_Publishing;
 
             if (int.TryParse(textBox4.Text.Trim(), out number_Of_Printed_Pages) &&
                 int.TryParse(textBox5.Text.Trim(), out date_Of_Writing) &&
@@ -127,5 +145,9 @@ namespace kursach.View
             Close();
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
