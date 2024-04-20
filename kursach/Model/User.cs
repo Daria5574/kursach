@@ -59,6 +59,7 @@ namespace kursach.Model
         }
         public List<Book>? Book { get; set; } = new();
         public List<Author>? Author { get; set; } = new();
+        public List<Theme>? Theme { get; set; } = new();
 
         public List<Bookshelf>? Bookshelf { get; set; } = new();
         public User() { }

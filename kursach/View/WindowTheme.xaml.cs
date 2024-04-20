@@ -26,19 +26,17 @@ namespace kursach.View
             InitializeComponent();
             nameUser.Content = App.currentUser.FName;
 
-            using (var db = new DatabaseContext())
-            {
+            DatabaseContext db = new DatabaseContext();
 
-                //var themes = db.theme
-                //    .Where (t => themes.ID_User == App.currentTheme.ID_User
-                //    .Where(bt => bt.ID_Book == currentBook.Id)
-                //    .Select(bt => new
-                //    {
-                //        BookId = bt.ID_Book,
-                //        Theme = bt.Theme
-                //    })
-                //    .ToList();
-            }
+            var themes = from theme in db.theme
+                         where theme.ID_User == App.currentUser.ID_User
+                         select new
+                         {
+                             ThemeName = theme.Name,
+                         };
+
+            lvMyTheme.ItemsSource = themes.ToList();
+
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -81,21 +79,22 @@ namespace kursach.View
         {
             if (sender is ListViewItem listViewItem)
             {
-                //Book currentBook = null;
-                //using (DatabaseContext db = new DatabaseContext())
-                //{
-                //    var selectedItem = listViewItem.Content as dynamic;
+                Theme currentTheme = null;
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    var selectedItem = listViewItem.Content as dynamic;
 
-                //    string bookTitle = selectedItem.BookName; // Получаем название книги из анонимного типа
+                    string themeName = selectedItem.ThemeName; // Получаем название книги из анонимного типа
 
-                //    // Проверяем, есть ли в базе данных книга с таким же названием
-                //    currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
+                    // Проверяем, есть ли в базе данных книга с таким же названием
+                    currentTheme = db.theme.FirstOrDefault(b => b.Name == themeName);
 
-                    WindowThemeBooks wThBook = new WindowThemeBooks();
+                    WindowThemeBooks wThBook = new WindowThemeBooks(currentTheme);
                     wThBook.Show();
                     Close();
                 }
             }
         }
     }
+}
 

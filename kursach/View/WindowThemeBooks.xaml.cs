@@ -1,4 +1,5 @@
-﻿using System;
+﻿using kursach.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,44 @@ namespace kursach.View
     /// </summary>
     public partial class WindowThemeBooks : Window
     {
-        public WindowThemeBooks()
+        public WindowThemeBooks(Theme currentTheme)
         {
             InitializeComponent();
+
+        }
+        private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
+        {
+            WindowBook wMainPage = new WindowBook();
+            wMainPage.Show();
+            Close();
+        }
+
+        private void favorite_Click(object sender, RoutedEventArgs e)
+        {
+            WindowFavorite wFav = new WindowFavorite();
+            wFav.Show();
+            Close();
+        }
+
+        private void Button_Add_Click(object sender, RoutedEventArgs e)
+        {
+            WindowAddBook wAdd = new WindowAddBook();
+            wAdd.Show();
+            Close();
+        }
+
+        private void author_Click(object sender, RoutedEventArgs e)
+        {
+            WindowAuthor wAuth = new WindowAuthor();
+            wAuth.Show();
+            Close();
+        }
+
+        private void NavigateToUser(object sender, MouseButtonEventArgs e)
+        {
+            WindowUser wUser = new WindowUser();
+            wUser.Show();
+            Close();
         }
     }
 }

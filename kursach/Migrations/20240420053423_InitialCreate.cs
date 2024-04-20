@@ -4,7 +4,7 @@
 
 namespace kursach.Migrations
 {
-    public partial class InitializeCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,19 +19,6 @@ namespace kursach.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_category", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "theme",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_theme", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,6 +93,26 @@ namespace kursach.Migrations
                     table.PrimaryKey("PK_bookshelf", x => x.Id);
                     table.ForeignKey(
                         name: "FK_bookshelf_user_ID_User",
+                        column: x => x.ID_User,
+                        principalTable: "user",
+                        principalColumn: "ID_User",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "theme",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ID_User = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_theme", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_theme_user_ID_User",
                         column: x => x.ID_User,
                         principalTable: "user",
                         principalColumn: "ID_User",
@@ -273,6 +280,11 @@ namespace kursach.Migrations
                 name: "IX_genre_ID_Category",
                 table: "genre",
                 column: "ID_Category");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_theme_ID_User",
+                table: "theme",
+                column: "ID_User");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

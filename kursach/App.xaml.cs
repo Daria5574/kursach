@@ -79,13 +79,22 @@ namespace kursach
             //    context.AddGenre(4, "Психология управления");
             //    context.AddGenre(5, "Литература 20 века");
 
-            //    context.AddTheme("Гражданская позиция");
-            //    context.AddTheme("Становление героя");
-            //    context.AddTheme("Американская литература");
-            //    context.AddTheme("Истории о любви");
-            //    context.AddTheme("Проза жизни");
-            //    context.AddTheme("Повести");
-            //    context.AddTheme("Экранизация");//Маленьки женщины, Цветы для Элджернона
+            //    context.AddTheme("Гражданская позиция",1);
+            //    context.AddTheme("Становление героя",1);
+            //    context.AddTheme("Американская литература",1);
+            //    context.AddTheme("Истории о любви",1);
+            //    context.AddTheme("Проза жизни",1);
+            //    context.AddTheme("Повести",1);
+            //    context.AddTheme("Экранизация",1);//Маленьки женщины, Цветы для Элджернона
+
+            //    context.AddTheme("Гражданская позиция", 2);
+            //    context.AddTheme("Становление героя", 2);
+            //    context.AddTheme("Американская литература", 3);
+            //    context.AddTheme("Истории о любви", 3);
+            //    context.AddTheme("Проза жизни", 4);
+            //    context.AddTheme("Повести", 5);
+            //    context.AddTheme("Экранизация", 2);
+            //    context.AddTheme("Экранизация", 3);
 
             //    context.AddBookshelf(2, "Любимые книги", "#F08080");
             //    context.AddBookshelf(3, "Прочитать позже", "#FFD700");
@@ -107,6 +116,7 @@ namespace kursach
             //    context.AddBook_Theme(4, 4);
             //    context.AddBook_Theme(5, 5);
             //    context.AddBook_Theme(6, 6);
+
             //}
         }
     }

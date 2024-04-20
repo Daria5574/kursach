@@ -12,8 +12,8 @@ using kursach.Model;
 namespace kursach.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240420010045_InitializeCreate")]
-    partial class InitializeCreate
+    [Migration("20240420053423_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -251,11 +251,16 @@ namespace kursach.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ID_User")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ID_User");
 
                     b.ToTable("theme");
                 });
@@ -378,6 +383,17 @@ namespace kursach.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("kursach.Model.Theme", b =>
+                {
+                    b.HasOne("kursach.Model.User", "User")
+                        .WithMany("Theme")
+                        .HasForeignKey("ID_User")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("kursach.Model.Author", b =>
                 {
                     b.Navigation("Book");
@@ -416,6 +432,8 @@ namespace kursach.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Bookshelf");
+
+                    b.Navigation("Theme");
                 });
 #pragma warning restore 612, 618
         }

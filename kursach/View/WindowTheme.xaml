@@ -60,11 +60,11 @@
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}"/>
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}"/>
             </StackPanel>
-            <ListView x:Name="lvMyBook" Background="#FFFFBB">
+            <ListView x:Name="lvMyTheme" Background="#FFFFBB">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Название темы" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Название темы" DisplayMemberBinding="{Binding ThemeName}" />
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>

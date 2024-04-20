@@ -62,9 +62,9 @@ namespace kursach.Model
             SaveChanges();
         }
         public DbSet<Theme> theme { get; set; } = null!;
-        public void AddTheme(string name)
+        public void AddTheme(string name, int iD_User)
         {
-            var newTheme = new Theme { Name = name };
+            var newTheme = new Theme { Name = name, ID_User = iD_User };
             theme.Add(newTheme);
             SaveChanges();
         }
