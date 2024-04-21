@@ -39,10 +39,10 @@
 
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White"  MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave" >
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
             </StackPanel>
@@ -53,19 +53,17 @@
                 <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
             </StackPanel>
         </StackPanel>
-        <Rectangle Fill ="#FFC4C4" HorizontalAlignment="Left" Height="235" Margin="16,113,0,0" VerticalAlignment="Top" Width="208"/>
-        <Image Source="D:\3_курс\рпм\курсовой\add_image.jpg" HorizontalAlignment="Left" Height="183" Margin="50,139,0,0" VerticalAlignment="Top" Width="140"/>
-        <Rectangle Fill="#EFEAF3" Margin="266,113,24,80" />
-        <Label x:Name="label1" Content="Label 1" HorizontalAlignment="Left" Margin="290,135,0,0" VerticalAlignment="Top" Foreground="#831A1A" />
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="290,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
+        <Rectangle Fill="#EFEAF3" Margin="35,122,86,26" />
+        <Label x:Name="label1" Content="Label 1" HorizontalAlignment="Left" Margin="72,134,0,0" VerticalAlignment="Top" Foreground="#831A1A" />
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="72,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="596" Height="20" />
 
-        <Label x:Name="label2" Content="Label 2" HorizontalAlignment="Left" Margin="290,175,0,0" VerticalAlignment="Top" Foreground="#831A1A"  />
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="290,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
+        <Label x:Name="label2" Content="Label 2" HorizontalAlignment="Left" Margin="72,185,0,0" VerticalAlignment="Top" Foreground="#831A1A"  />
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="72,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="596"  Height="25" />
 
-        <Label x:Name="label3" Content="Label 3" HorizontalAlignment="Left" Margin="290,218,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="290,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" />
-        <Button Style="{StaticResource Save}"  Content="Сохранить" HorizontalAlignment="Left" Margin="545,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="Button_Click"/>
-        <Button Style="{StaticResource Save}"  Content="Отменить" HorizontalAlignment="Left" Margin="664,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071"/>
+        <Label x:Name="label3" Content="Label 3" HorizontalAlignment="Left" Margin="72,239,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="72,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="596"  Height="77"/>
+        <Button Style="{StaticResource Save}"  Content="Сохранить" HorizontalAlignment="Left" Margin="454,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="save_Click" x:Name="save"/>
+        <Button Style="{StaticResource Save}"  Content="Отменить" HorizontalAlignment="Left" Margin="562,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071" Click="cancel_Click" x:Name="cancel"/>
 
 
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>

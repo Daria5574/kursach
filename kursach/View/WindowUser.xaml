@@ -41,10 +41,9 @@
     </Window.Resources>
     <Grid>
         <StackPanel Background="#E8CCFF" >
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White"  MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave" >
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
-
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">

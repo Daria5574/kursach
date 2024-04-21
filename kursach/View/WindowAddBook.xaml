@@ -41,7 +41,7 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White"  MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave" >
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
             </StackPanel>
@@ -84,9 +84,16 @@
 
         <Label x:Name ="label10" Content =" Label 10 " HorizontalAlignment =" Left " Margin =" 290 ,503 ,0 ,0 " VerticalAlignment ="Top" Foreground="#831A1A"/>
         <TextBox x:Name ="textBox10" HorizontalAlignment =" Left " Margin =" 290 ,526 ,0 ,0 " TextWrapping =" Wrap " VerticalAlignment =" Top " Width =" 500 "/>
-        <Button  Style="{StaticResource Save}" Content="Сохранить" HorizontalAlignment="Left" Margin="600,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="Button_Click"/>
-        <Button  Style="{StaticResource Save}" Content="Отменить" HorizontalAlignment="Left" Margin="706,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071" Click="Button_Click_1"/>
+
+        <Button  Style="{StaticResource Save}" Content="Сохранить" HorizontalAlignment="Left" Margin="587,580,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="save_Click" x:Name="save"/>
+        <Button  Style="{StaticResource Save}" Content="Отменить" HorizontalAlignment="Left" Margin="690,580,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071" Click="cancel_Click" x:Name="cancel"/>
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
+       
+        <Rectangle Fill="#EFEAF3" Margin="28,403,613,80" />
+
+        <Label x:Name="labelTheme" Content="Темы" HorizontalAlignment="Left" Margin="44,421,0,0" VerticalAlignment="Top" Foreground="#831A1A"/>
+
+        <ListBox x:Name="LbThemes" SelectionMode="Multiple" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="44,444,628,97"/>
 
 
 

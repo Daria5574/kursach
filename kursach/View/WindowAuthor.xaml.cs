@@ -1,4 +1,5 @@
 ﻿using kursach.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,92 @@ namespace kursach.View
     /// </summary>
     public partial class WindowAuthor : Window
     {
+        DatabaseContext db = new DatabaseContext();
+        List<Author> authors;
         public WindowAuthor()
         {
             InitializeComponent();
+            UpdateAuthors();
+
             nameUser.Content = App.currentUser.FName;
-            DatabaseContext db = new DatabaseContext();
-            List<Author> authors = db.author
+
+
+        }
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem listViewItem)
+            {
+                Author currentAuthor = null;
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    var selectedItem = listViewItem.Content as dynamic;
+                    string fname = selectedItem.FName + " " + selectedItem.LName;
+                    currentAuthor = db.author.FirstOrDefault(a => a.FName + " " + a.LName == fname);
+
+                    WindowAuthorDetails wAuthDetails = new WindowAuthorDetails(currentAuthor);
+                    wAuthDetails.Show();
+                    Close();
+                }
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvMyAuthor.SelectedItem != null)
+            {
+                Author selectedAuthorListItem = lvMyAuthor.SelectedItem as Author;
+
+                // Получаем фамилию и имя выбранного элемента списка
+                string firstName = selectedAuthorListItem.FName;
+
+                // Находим автора в БД по фамилии и имени
+                Author selectedAuthor = db.author
+                    .Where(a => a.FName + " " + a.LName == firstName)
+                    .FirstOrDefault();
+                WindowEditAuthor wEditAuth = new WindowEditAuthor(selectedAuthor);
+                wEditAuth.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Выберите автора для редактирования");
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvMyAuthor != null)
+            {
+                Author selectedAthor = lvMyAuthor.SelectedItem as Author;
+                string fullName = selectedAthor.FName;
+
+                Author dAuthor = db.author
+                    .Where(a => a.FName + " " + a.LName == fullName)
+                    .FirstOrDefault();
+
+                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить автора {fullName}?", "Подтверждение удаления", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    db.Entry(dAuthor).Reload();
+                    db.author.Remove(dAuthor);
+                    db.SaveChanges();
+                    UpdateAuthors();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите автора для удаления");
+            }
+        }
+        public void UpdateAuthors()
+        {
+                authors = db.author
                 .Where(b => b.ID_User == App.currentUser.ID_User)
                 .Select(b => new Author { FName = b.FName + " " + b.LName })
                 .ToList();
             lvMyAuthor.ItemsSource = authors;
         }
-
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowBook wMainPage = new WindowBook();
@@ -71,39 +146,15 @@ namespace kursach.View
             wTheme.Show();
             Close();
         }
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is ListViewItem listViewItem)
-            {
-                Author currentAuthor = null;
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    var selectedItem = listViewItem.Content as dynamic;
-                    string fname = selectedItem.FName + " " + selectedItem.LName;
-                    currentAuthor = db.author.FirstOrDefault(a => a.FName + " " + a.LName == fname);
-
-                    WindowAuthorDetails wAuthDetails = new WindowAuthorDetails(currentAuthor);
-                    wAuthDetails.Show();
-                    Close();
-                }
-            }
+            this.Cursor = Cursors.Hand;
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
         {
-                if (lvMyAuthor.SelectedItem != null)
-                {
-                Author selectedAuthor = lvMyAuthor.SelectedItem as Author;
-                    //Trainer selectedTrainer = lvTrainer.SelectedItem as Trainer;
-                    WindowEditAuthor wEditTrainer = new WindowEditAuthor(selectedAuthor);
-                    wEditTrainer.Show();
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Пожалуйста, выберите клиента для редактирования");
-                }
-            }
+            this.Cursor = Cursors.Arrow;
+        }
 
     }
 }

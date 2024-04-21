@@ -16,45 +16,34 @@ using System.Windows.Shapes;
 namespace kursach.View
 {
     /// <summary>
-    /// Логика взаимодействия для WindowEditAuthor.xaml
+    /// Логика взаимодействия для WindowEditTheme.xaml
     /// </summary>
-    public partial class WindowEditAuthor : Window
+    public partial class WindowEditTheme : Window
     {
         DatabaseContext db;
-        private Author auth;
-        public WindowEditAuthor(Author selectedAuthor)
+        private Theme them;
+        public WindowEditTheme(Theme selectedTheme)
         {
             InitializeComponent();
-
             db = new DatabaseContext();
-            auth = selectedAuthor;
-
-            label1.Content = "Имя автора";
-            label2.Content = "Фамилия автора*";
-            label3.Content = "Об авторе";
-            nameUser.Content = App.currentUser.FName;
-
-            textBox1.Text = auth.FName;
-            textBox2.Text = auth.LName;
-            textBox3.Text = auth.Description;
-
+            them = selectedTheme;
         }
-        private void Button_Save_Click(object sender, RoutedEventArgs e)
-        {
-            auth.FName = textBox1.Text.Trim();
-            auth.LName = textBox2.Text.Trim();
-            auth.Description = textBox3.Text.Trim();
 
-            db.author.Update(auth);
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+
+            them.Name = textBox1.Text.Trim();
+
+            db.theme.Update(them);
             db.SaveChanges();
 
-            MessageBox.Show("Данные автора обновлены.");
+            MessageBox.Show("Данные темы обновлены.");
 
-            WindowAuthor wAuth = new();
-            wAuth.Show();
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
             Close();
         }
-        private void Button_Cancel_Click(object sender, RoutedEventArgs e)
+        private void cancel_Click(object sender, RoutedEventArgs e)
         {
             WindowAuthor wAuth = new();
             wAuth.Show();
@@ -102,6 +91,5 @@ namespace kursach.View
         {
             this.Cursor = Cursors.Arrow;
         }
-
     }
 }

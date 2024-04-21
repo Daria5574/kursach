@@ -57,5 +57,15 @@ namespace kursach.View
             wTheme.Show();
             Close();
         }
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
+        }
+
     }
 }

@@ -42,12 +42,11 @@
     <Grid>
 
         <StackPanel Background="#E8CCFF" >
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White"  MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave" >
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
-
             </StackPanel>
-
+            
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
                 <Label Content="Мои авторы" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
                 <Button Style="{StaticResource menu}" x:Name="author" Margin="470,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
@@ -58,7 +57,7 @@
             <StackPanel Orientation="Horizontal"  Background="White">
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}" Click="Button_Add_Click"/>
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}" x:Name="Edit" Click="Edit_Click"/>
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}" x:Name="Delete"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}" x:Name="Delete" Click="Delete_Click"/>
             </StackPanel>
             <ListView x:Name="lvMyAuthor" Background="#FFFFBB">
                 <ListView.View>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WindowAddTheme" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="AddEditDelete">
+        <Style TargetType="Button" x:Key="Save">
             <Setter Property="Background" Value="#FFEDCECE"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Template">
@@ -41,16 +41,26 @@
     </Window.Resources>
     <Grid>
         <StackPanel Background="#FFFFFF" >
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White"  MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave" >
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36" Width="818">
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="610,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Label Content="Добавление темы" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="420,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
             </StackPanel>
         </StackPanel>
+        <Rectangle Fill="#EFEAF3" Margin="35,122,86,26" />
+        <Label x:Name="label1" Content="Название темы" HorizontalAlignment="Left" Margin="347,139,0,0" VerticalAlignment="Top" Foreground="#831A1A" />
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="347,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="20" />
+        <Button Style="{StaticResource Save}"  Content="Сохранить" HorizontalAlignment="Left" Margin="466,332,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.356" Click="save_Click" x:Name="save"/>
+        <Button Style="{StaticResource Save}"  Content="Отменить" HorizontalAlignment="Left" Margin="575,332,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.265,0.071" x:Name="cancel" Click="cancel_Click"/>
+
+
+        <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
+        <Image Source="D:\3_курс\рпм\курсовой\книги\хщхщ3.jpg" HorizontalAlignment="Left" Height="240" Margin="48,134,0,0" VerticalAlignment="Top" Width="263"/>
     </Grid>
 </Window>

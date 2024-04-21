@@ -62,8 +62,17 @@ namespace kursach.View
             wTheme.Show();
             Close();
         }
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
+        }
+
+        private void save_Click(object sender, RoutedEventArgs e)
         {
             string fname = textBox1.Text.Trim();
             string lname = textBox2.Text.Trim();
@@ -80,5 +89,11 @@ namespace kursach.View
             Close();
         }
 
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
+            WindowAuthor wAuth = new WindowAuthor();
+            wAuth.Show();
+            Close();
+        }
     }
 }

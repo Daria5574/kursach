@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace kursach.View
     /// </summary>
     public partial class WindowTheme : Window
     {
+        DatabaseContext db = new DatabaseContext();
         public WindowTheme()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace kursach.View
                          where theme.ID_User == App.currentUser.ID_User
                          select new
                          {
-                             ThemeName = theme.Name,
+                             Name = theme.Name,
                          };
 
             lvMyTheme.ItemsSource = themes.ToList();
@@ -75,6 +77,16 @@ namespace kursach.View
             wAdd.Show();
             Close();
         }
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
+        }
+
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is ListViewItem listViewItem)
@@ -95,6 +107,76 @@ namespace kursach.View
                 }
             }
         }
+
+    //    Author selectedAuthorListItem = lvMyAuthor.SelectedItem as Author;
+
+    //    // Получаем фамилию и имя выбранного элемента списка
+    //    string firstName = selectedAuthorListItem.FName;
+
+    //    // Находим автора в БД по фамилии и имени
+    //    Author selectedAuthor = db.author
+    //        .Where(a => a.FName + " " + a.LName == firstName)
+    //        .FirstOrDefault();
+    //    WindowEditAuthor wEditAuth = new WindowEditAuthor(selectedAuthor);
+    //    wEditAuth.Show();
+    //            Close();
+    //}
+    private void Button_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvMyTheme.SelectedItem != null)
+            {
+                string selectedItem = lvMyTheme.SelectedItem.ToString();
+                //Theme selectedThemeListItem = lvMyTheme.SelectedItem as Theme;
+                int startIndex = selectedItem.IndexOf('=') + 2; // Находим индекс после знака равенства и открывающей фигурной скобки
+                int endIndex = selectedItem.Length - 3; // Находим индекс перед закрывающей фигурной скобкой и пробелом перед ней
+                string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1); // Извлекаем подстроку между индексами
+                Theme selectedTheme = db.theme
+                    .Where(t => t.Name == name)
+                    .FirstOrDefault();
+                WindowEditTheme wEditTheme = new WindowEditTheme(selectedTheme);
+                wEditTheme.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Выберите тему для редактирования");
+            }
+        }
+
+        //private void Delete_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (lvMyAuthor != null)
+        //    {
+        //        Author selectedAthor = lvMyAuthor.SelectedItem as Author;
+        //        string fullName = selectedAthor.FName;
+
+        //        Author dAuthor = db.author
+        //            .Where(a => a.FName + " " + a.LName == fullName)
+        //            .FirstOrDefault();
+
+        //        MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить автора {fullName}?", "Подтверждение удаления", MessageBoxButton.YesNo);
+
+        //        if (result == MessageBoxResult.Yes)
+        //        {
+        //            db.Entry(dAuthor).Reload();
+        //            db.author.Remove(dAuthor);
+        //            db.SaveChanges();
+        //            UpdateAuthors();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Выберите автора для удаления");
+        //    }
+        //}
+        //public void UpdateAuthors()
+        //{
+        //    authors = db.author
+        //    .Where(b => b.ID_User == App.currentUser.ID_User)
+        //    .Select(b => new Author { FName = b.FName + " " + b.LName })
+        //    .ToList();
+        //    lvMyAuthor.ItemsSource = authors;
+        //}
     }
 }
 

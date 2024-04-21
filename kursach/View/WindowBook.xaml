@@ -40,19 +40,18 @@
         </Style>
     </Window.Resources>
     <Grid>
-        
-        <StackPanel Background="#E8CCFF" >
-            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White">
+
+        <StackPanel Background="#E8CCFF">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="NavigateToMainPage"  Background="White"  MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave" >
                 <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
                 <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="5,15,0,0" VerticalAlignment="Top"/>
-
             </StackPanel>
             
                 <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
                 <Label Content="Мои книги" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
                 <Button Style="{StaticResource menu}" x:Name="author" Margin="480,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
-                <Button Style="{StaticResource menu}" x:Name="bookshelf" Margin="10,0,0,0" Content="Темы" Height="25"></Button>
+                <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
                 </StackPanel>
 
             <StackPanel Orientation="Horizontal"  Background="White">

@@ -35,7 +35,9 @@ namespace kursach.View
             InitializeComponent();
 
             var viewModel = new WindowAddBookViewModel();
+
             db = new DatabaseContext();
+
             var authors = db.author
                 .Where(a => a.ID_User == App.currentUser.ID_User)
                 .Select(a => new { FullName = a.Id + ". " + a.FName + " " + a.LName, Author = a })
@@ -46,9 +48,14 @@ namespace kursach.View
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(CbAuthor.ItemsSource);
             view.Refresh();
 
+            var themes = db.book
+                   .Where(b => b.ID_User == App.currentUser.ID_User)
+                   .Join(db.book_theme, b => b.Id, bt => bt.ID_Book, (b, bt) => new { b, bt })
+                   .Join(db.theme, bt => bt.bt.ID_Theme, t => t.Id, (bt, t) => t.Name)
+                   .ToList();
 
+            LbThemes.ItemsSource = themes;
 
-            //CbAuthor.DisplayMemberPath = "FullName";
 
             label1.Content = "Название*";
             label2.Content = "Путь к файлу*";
@@ -63,13 +70,12 @@ namespace kursach.View
             nameUser.Content = App.currentUser.FName;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void save_Click(object sender, RoutedEventArgs e)
         {
             string name = textBox1.Text.Trim();
             string the_Path_To_The_File = textBox2.Text.Trim();
             string selectedAuthorName = CbAuthor.SelectedItem.ToString();
 
-            // Находим позицию точки в выбранном значении
             int dotIndex = selectedAuthorName.IndexOf('.');
             string id_AuthorString = selectedAuthorName.Substring(0, dotIndex).Trim();
             id_AuthorString = Regex.Match(id_AuthorString, @"\d+").Value;
@@ -89,6 +95,25 @@ namespace kursach.View
             {
                 Book book = new Book(name, id_Author, the_Path_To_The_File, selectedImagePath, number_Of_Printed_Pages, date_Of_Writing, the_Year_Of_Publishing, isbn, time_To_Read, about_The_Book, age_Rating, 0, App.currentUser.ID_User);
                 db.book.Add(book);
+                db.SaveChanges();
+
+                var selectedThemes = LbThemes.SelectedItems.Cast<string>().Where(themeName =>
+                {
+                    var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));
+                    return theme != null;
+                }).ToList();
+
+                // Свяжите книгу с выбранными темами
+                foreach (var themeName in selectedThemes)
+                {
+                    var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));
+
+                    if (theme != null)
+                    {
+                        db.book_theme.Add(new Book_Theme { ID_Book = book.Id, ID_Theme = theme.Id });
+                    }
+                }
+
                 db.SaveChanges();
 
                 MessageBox.Show("Книга успешно добавлена.");
@@ -144,10 +169,21 @@ namespace kursach.View
             wTheme.Show();
             Close();
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
         {
+            this.Cursor = Cursors.Hand;
+        }
 
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
+        }
+
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
+            WindowBook wBook = new WindowBook();
+            wBook.Show();
+            Close();
         }
     }
 }

@@ -37,6 +37,12 @@ namespace kursach.View
             lvMyBook.ItemsSource = listViewData.ToList();
 
         }
+        private void theme_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowBook wMainPage = new WindowBook();
@@ -70,6 +76,15 @@ namespace kursach.View
             WindowUser wUser = new WindowUser();
             wUser.Show();
             Close();
+        }
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)

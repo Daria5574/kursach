@@ -1,4 +1,5 @@
-﻿using System;
+﻿using kursach.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace kursach.View
     /// </summary>
     public partial class WindowAddTheme : Window
     {
+        DatabaseContext db;
         public WindowAddTheme()
         {
             InitializeComponent();
+
+            db = new DatabaseContext();
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -63,5 +67,37 @@ namespace kursach.View
             wTheme.Show();
             Close();
         }
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+            string name = textBox1.Text.Trim();
+            Theme theme = new Theme(name, App.currentUser.ID_User);
+
+            db.theme.Add(theme);
+            db.SaveChanges();
+
+            MessageBox.Show("Тема добавлена успешно");
+
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
+
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTheme wTheme = new WindowTheme();
+            wTheme.Show();
+            Close();
+        }
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
+        }
+
     }
 }
