@@ -33,9 +33,7 @@ namespace kursach.View
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-
             them.Name = textBox1.Text.Trim();
-
             db.theme.Update(them);
             db.SaveChanges();
 

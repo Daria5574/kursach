@@ -87,7 +87,7 @@ namespace kursach.View
             }
 
             var bookWithThemes = db.book_theme
-                .Include(bt => bt.Theme) // Включаем связанные записи Theme
+                .Include(bt => bt.Theme)
                 .Where(bt => bt.ID_Book == currentBook.Id)
                 .Select(bt => new
                 {
@@ -98,7 +98,7 @@ namespace kursach.View
 
             if (bookWithThemes != null && bookWithThemes.Count > 0)
             {
-                WrapPanel wrapPanel = new WrapPanel() // WrapPanel - для расположения в ряд
+                WrapPanel wrapPanel = new WrapPanel()
                 {
                     Orientation = Orientation.Horizontal,
                     Margin = new Thickness(10)
@@ -143,10 +143,8 @@ namespace kursach.View
 
             FavoriteButton.Click += async (sender, e) =>
             {
-                // Изменяем значение Is_Favorite (переключение между 0 и 1)
                 currentBook.Is_Favorite = currentBook.Is_Favorite == 0 ? 1 : 0;
 
-                // Сохраняем изменения в базе данных асинхронно
                 using (var db = new DatabaseContext())
                 {
                     db.book.Attach(currentBook); // Присоединяем currentBook к контексту
@@ -154,7 +152,6 @@ namespace kursach.View
                     await db.SaveChangesAsync();
                 }
 
-                // Обновляем стиль и содержимое кнопки в зависимости от Is_Favorite
                 if (currentBook.Is_Favorite == 1)
                 {
                     FavoriteButton.Content = "★";
@@ -216,10 +213,8 @@ namespace kursach.View
             using (DatabaseContext db = new DatabaseContext())
             {
                 var authorh = authorLabel.Content as dynamic;
+                string fname = authorh;
 
-                string fname = authorh; // Получаем название книги из анонимного типа
-
-                // Проверяем, есть ли в базе данных книга с таким же названием
                 currentAuthor = db.author.FirstOrDefault(a => a.FName + " " + a.LName == fname);
                 WindowAuthorDetails wAuthor = new WindowAuthorDetails(currentAuthor);
                 wAuthor.Show();
@@ -235,7 +230,6 @@ namespace kursach.View
         }
         private async Task ReadFB2FileStreamAsync(Stream stream)
         {
-            // setup
             var readerSettings = new XmlReaderSettings
             {
                 DtdProcessing = DtdProcessing.Ignore
@@ -244,7 +238,6 @@ namespace kursach.View
 
             try
             {
-                // reading
                 FB2File file = await new FB2Reader().ReadAsync(stream, loadSettings);
             }
             catch (Exception ex)

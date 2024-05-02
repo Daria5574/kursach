@@ -29,9 +29,88 @@ namespace kursach.View
             InitializeComponent();
             UpdateThemes();
             nameUser.Content = App.currentUser.FName;
-
             DatabaseContext db = new DatabaseContext();
+        }
 
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem listViewItem)
+            {
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    string selectedItem = lvMyTheme.SelectedItem.ToString();
+                    int startIndex = selectedItem.IndexOf('=') + 2; 
+                    int endIndex = selectedItem.Length - 3; 
+                    string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1); 
+                    Theme th = db.theme
+                        .Where(t => t.Name == name)
+                        .FirstOrDefault();
+
+                    WindowThemeBooks wThBook = new WindowThemeBooks(th);
+                    wThBook.Show();
+                    Close();
+                }
+            }
+        }
+    private void Button_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvMyTheme.SelectedItem != null)
+            {
+                string selectedItem = lvMyTheme.SelectedItem.ToString();
+                int startIndex = selectedItem.IndexOf('=') + 2;
+                int endIndex = selectedItem.Length - 3;
+                string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1);
+                Theme selectedTheme = db.theme
+                    .Where(t => t.Name == name)
+                    .FirstOrDefault();
+                WindowEditTheme wEditTheme = new WindowEditTheme(selectedTheme);
+                wEditTheme.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Выберите тему для редактирования");
+            }
+        }
+
+        public void UpdateThemes()
+        {
+            var themes = from theme in db.theme
+                         where theme.ID_User == App.currentUser.ID_User
+                         select new
+                         {
+                             Name = theme.Name,
+                         };
+
+            lvMyTheme.ItemsSource = themes.ToList();
+        }
+        private void Button_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvMyTheme != null)
+            {
+                string selectedItem = lvMyTheme.SelectedItem.ToString();
+                int startIndex = selectedItem.IndexOf('=') + 2; 
+                int endIndex = selectedItem.Length - 3; 
+                string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1); 
+                Theme selectedTheme = db.theme
+                    .Where(t => t.Name == name)
+                    .FirstOrDefault();
+
+                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить тему {name}?", "Подтверждение удаления", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    db.Entry(selectedTheme).Reload();
+                    db.theme.Remove(selectedTheme);
+                    db.SaveChanges();
+                    UpdateThemes();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите тему для удаления");
+            }
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
@@ -78,91 +157,6 @@ namespace kursach.View
         private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
         {
             this.Cursor = Cursors.Arrow;
-        }
-
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is ListViewItem listViewItem)
-            {
-               // Theme currentTheme = null;
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    string selectedItem = lvMyTheme.SelectedItem.ToString();
-                    //Theme selectedThemeListItem = lvMyTheme.SelectedItem as Theme;
-                    int startIndex = selectedItem.IndexOf('=') + 2; // Находим индекс после знака равенства и открывающей фигурной скобки
-                    int endIndex = selectedItem.Length - 3; // Находим индекс перед закрывающей фигурной скобкой и пробелом перед ней
-                    string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1); // Извлекаем подстроку между индексами
-                    Theme th = db.theme
-                        .Where(t => t.Name == name)
-                        .FirstOrDefault();
-
-                    WindowThemeBooks wThBook = new WindowThemeBooks(th);
-                    wThBook.Show();
-                    Close();
-                }
-            }
-        }
-    private void Button_Edit_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvMyTheme.SelectedItem != null)
-            {
-                string selectedItem = lvMyTheme.SelectedItem.ToString();
-                //Theme selectedThemeListItem = lvMyTheme.SelectedItem as Theme;
-                int startIndex = selectedItem.IndexOf('=') + 2; // Находим индекс после знака равенства и открывающей фигурной скобки
-                int endIndex = selectedItem.Length - 3; // Находим индекс перед закрывающей фигурной скобкой и пробелом перед ней
-                string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1); // Извлекаем подстроку между индексами
-                Theme selectedTheme = db.theme
-                    .Where(t => t.Name == name)
-                    .FirstOrDefault();
-                WindowEditTheme wEditTheme = new WindowEditTheme(selectedTheme);
-                wEditTheme.Show();
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("Выберите тему для редактирования");
-            }
-        }
-
-        public void UpdateThemes()
-        {
-            var themes = from theme in db.theme
-                         where theme.ID_User == App.currentUser.ID_User
-                         select new
-                         {
-                             Name = theme.Name,
-                         };
-
-            lvMyTheme.ItemsSource = themes.ToList();
-        }
-
-        private void Button_Delete_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvMyTheme != null)
-            {
-                string selectedItem = lvMyTheme.SelectedItem.ToString();
-                //Theme selectedThemeListItem = lvMyTheme.SelectedItem as Theme;
-                int startIndex = selectedItem.IndexOf('=') + 2; // Находим индекс после знака равенства и открывающей фигурной скобки
-                int endIndex = selectedItem.Length - 3; // Находим индекс перед закрывающей фигурной скобкой и пробелом перед ней
-                string name = selectedItem.Substring(startIndex, endIndex - startIndex + 1); // Извлекаем подстроку между индексами
-                Theme selectedTheme = db.theme
-                    .Where(t => t.Name == name)
-                    .FirstOrDefault();
-
-                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить тему {name}?", "Подтверждение удаления", MessageBoxButton.YesNo);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    db.Entry(selectedTheme).Reload();
-                    db.theme.Remove(selectedTheme);
-                    db.SaveChanges();
-                    UpdateThemes();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите тему для удаления");
-            }
         }
     }
 }

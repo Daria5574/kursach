@@ -49,10 +49,6 @@ namespace kursach.View
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(CbAuthor.ItemsSource);
             view.Refresh();
 
-            //        var themes = db.theme
-            //.Where(t => db.book_theme.Any(bt => bt.ID_Theme == t.Id && db.book.Any(b => b.Id == bt.ID_Book && b.ID_User == App.currentUser.ID_User)))
-            //.Select(t => t.Name)
-            //.ToList();
             var themes = db.theme
             .Where(t => t.ID_User == App.currentUser.ID_User)
             .Select(t => t.Name )
@@ -121,7 +117,6 @@ namespace kursach.View
                 return theme != null;
             }).ToList();
 
-            // Свяжите книгу с выбранными темами
             foreach (var themeName in selectedThemes)
             {
                 var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));

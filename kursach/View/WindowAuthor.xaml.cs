@@ -54,10 +54,8 @@ namespace kursach.View
             {
                 Author selectedAuthorListItem = lvMyAuthor.SelectedItem as Author;
 
-                // Получаем фамилию и имя выбранного элемента списка
                 string firstName = selectedAuthorListItem.FName;
 
-                // Находим автора в БД по фамилии и имени
                 Author selectedAuthor = db.author
                     .Where(a => a.FName + " " + a.LName == firstName)
                     .FirstOrDefault();

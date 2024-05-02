@@ -38,6 +38,24 @@ namespace kursach.View
             lvMyBook.ItemsSource = listViewData.ToList();
 
         }
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem listViewItem)
+            {
+                Book currentBook = null;
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    var selectedItem = listViewItem.Content as dynamic;
+                    string bookTitle = selectedItem.BookName;
+
+                    currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
+
+                    WindowBookDetails wBookDetails = new WindowBookDetails(currentBook);
+                    wBookDetails.Show();
+                    Close();
+                }
+            }
+        }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {
             WindowBook wMainPage = new WindowBook();
@@ -77,27 +95,6 @@ namespace kursach.View
         private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
         {
             this.Cursor = Cursors.Arrow;
-        }
-
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is ListViewItem listViewItem)
-            {
-                Book currentBook = null;
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    var selectedItem = listViewItem.Content as dynamic;
-
-                    string bookTitle = selectedItem.BookName; // Получаем название книги из анонимного типа
-
-                    // Проверяем, есть ли в базе данных книга с таким же названием
-                    currentBook = db.book.FirstOrDefault(b => b.Name == bookTitle);
-
-                    WindowBookDetails wBookDetails = new WindowBookDetails(currentBook);
-                    wBookDetails.Show();
-                    Close();
-                }
-            }
         }
 
     }
