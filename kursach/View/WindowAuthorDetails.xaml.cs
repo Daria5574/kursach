@@ -25,7 +25,9 @@ namespace kursach.View
             InitializeComponent();
             nameUser.Content = App.currentUser.FName;
             nameAuthor.Content = currentAuthor.FName + " " + currentAuthor.LName;
+
             descriptionAuthor.Text = currentAuthor.Description;
+
             DatabaseContext db = new DatabaseContext();
             var listViewData = from book in db.book
                                join author in db.author on book.ID_Author equals author.Id

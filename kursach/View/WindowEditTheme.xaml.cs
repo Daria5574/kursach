@@ -27,6 +27,8 @@ namespace kursach.View
             InitializeComponent();
             db = new DatabaseContext();
             them = selectedTheme;
+            nameUser.Content = App.currentUser.FName;
+            textBox1.Text = them.Name;
         }
 
         private void save_Click(object sender, RoutedEventArgs e)

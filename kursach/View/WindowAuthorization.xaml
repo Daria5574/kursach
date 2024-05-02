@@ -52,11 +52,11 @@
         <Label Content="Вход" HorizontalAlignment="Left" Margin="59,107,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Microsoft Yi Baiti"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="77,148,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF831A1A" RenderTransformOrigin="0.598,0.57"/>
         <Label Content="Пароль" HorizontalAlignment="Left" Margin="77,226,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF831A1A"/>
-        <Button Style="{StaticResource ButtonStyle}" Content="Войти" HorizontalAlignment="Left" Margin="646,331,0,0" VerticalAlignment="Top" Height="41" Width="88" FontSize="14" Click="Button_Auth_Click"/>
-        <TextBox HorizontalAlignment="Left" Margin="74,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" Height="40" x:Name="emailTextBox"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="74,255,0,0" VerticalAlignment="Top" Width="660" Height="40" x:Name="passwordTextBox"/>
+        <Button Style="{StaticResource ButtonStyle}" Content="Войти" HorizontalAlignment="Left" Margin="625,331,0,0" VerticalAlignment="Top" Height="41" Width="88" FontSize="14" Click="Button_Auth_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="74,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="639" Height="40" x:Name="emailTextBox"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="74,255,0,0" VerticalAlignment="Top" Width="639" Height="40" x:Name="passwordTextBox"/>
         <Image Source="D:\3_курс\рпм\курсовой\logo2.jpg" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="42" Margin="16,10,0,0"/>
         <Label Content="Sova Čte" HorizontalAlignment="Left" Margin="59,15,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="62,331,0,0" VerticalAlignment="Top" Content="Назад" Width="88" Height="41"  FontSize="14" Click="Button_Click"/>
+        <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="74,331,0,0" VerticalAlignment="Top" Content="Назад" Width="88" Height="41"  FontSize="14" Click="Button_Click"/>
     </Grid>
 </Window>

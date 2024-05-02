@@ -56,8 +56,8 @@
 
             <StackPanel Orientation="Horizontal"  Background="White">
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}" Click="Button_Add_Click"/>
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}"/>
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}" x:Name="Button_Edit" Click="Button_Edit_Click"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}" x:Name="Button_Delete" Click="Button_Delete_Click"/>
             </StackPanel>
             <ListView x:Name="lvMyBook" Background="#FFFFBB">
                 <ListView.View>

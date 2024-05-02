@@ -168,7 +168,7 @@ namespace kursach.Model
             this.Is_Favorite = 0;
         }
         public Book(string name, int iD_Author, string the_Path_To_The_File, string cover,
-int number_Of_Printed_Pages, int date_Of_Writing, int the_Year_Of_Publishing,
+int? number_Of_Printed_Pages, int? date_Of_Writing, int? the_Year_Of_Publishing,
 string isbn, string time_To_Read, string about_The_Book, string age_Rating,
 int is_Favorite, int iD_User)
         {

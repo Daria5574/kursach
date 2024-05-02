@@ -52,7 +52,22 @@
                 <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click"></Button>
             </StackPanel>
         </StackPanel>
-        <Label x:Name="nameTheme" Content="Label" HorizontalAlignment="Left" Margin="22,121,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nameTheme" FontSize="28" Content="Label" HorizontalAlignment="Left" Margin="22,105,0,0" VerticalAlignment="Top"/>
         <Label x:Name ="nameUser" Content="Label" HorizontalAlignment="Left" FontSize="16" Margin="690,8,0,0" VerticalAlignment="Top" MouseLeftButtonDown="NavigateToUser"/>
+        <ListView x:Name="lvThemeBooks"  Margin="36,170,36,28" Background="#E8CCFF">
+        <ListView.View>
+            <GridView>
+                <GridView.Columns>
+                        <GridViewColumn Header="Название книги" DisplayMemberBinding="{Binding BookName}" />
+                        <GridViewColumn Header="Имя и фамилия автора" DisplayMemberBinding="{Binding AuthorFullName}" />
+                    </GridView.Columns>
+            </GridView>
+        </ListView.View>
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Window>

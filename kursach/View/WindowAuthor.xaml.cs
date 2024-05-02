@@ -29,8 +29,6 @@ namespace kursach.View
             UpdateAuthors();
 
             nameUser.Content = App.currentUser.FName;
-
-
         }
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

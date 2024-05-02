@@ -30,6 +30,7 @@ namespace kursach.View
         int id_Author;
         private string selectedImagePath;
         List<Author> authors;
+
         public WindowAddBook()
         {
             InitializeComponent();
@@ -48,14 +49,16 @@ namespace kursach.View
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(CbAuthor.ItemsSource);
             view.Refresh();
 
-            var themes = db.book
-                   .Where(b => b.ID_User == App.currentUser.ID_User)
-                   .Join(db.book_theme, b => b.Id, bt => bt.ID_Book, (b, bt) => new { b, bt })
-                   .Join(db.theme, bt => bt.bt.ID_Theme, t => t.Id, (bt, t) => t.Name)
-                   .ToList();
+            //        var themes = db.theme
+            //.Where(t => db.book_theme.Any(bt => bt.ID_Theme == t.Id && db.book.Any(b => b.Id == bt.ID_Book && b.ID_User == App.currentUser.ID_User)))
+            //.Select(t => t.Name)
+            //.ToList();
+            var themes = db.theme
+            .Where(t => t.ID_User == App.currentUser.ID_User)
+            .Select(t => t.Name )
+            .ToList();
 
             LbThemes.ItemsSource = themes;
-
 
             label1.Content = "Название*";
             label2.Content = "Путь к файлу*";
@@ -85,47 +88,58 @@ namespace kursach.View
             string time_To_Read = textBox8.Text.Trim();
             string about_The_Book = textBox9.Text.Trim();
             string age_Rating = textBox10.Text.Trim();
-            int number_Of_Printed_Pages;
-            int date_Of_Writing;
-            int the_Year_Of_Publishing;
+            int? number_Of_Printed_Pages = null;
+            int? date_Of_Writing = null;
+            int? the_Year_Of_Publishing = null;
 
-            if (int.TryParse(textBox4.Text.Trim(), out number_Of_Printed_Pages) &&
-                int.TryParse(textBox5.Text.Trim(), out date_Of_Writing) &&
-                int.TryParse(textBox6.Text.Trim(), out the_Year_Of_Publishing))
+            if (!string.IsNullOrEmpty(textBox4.Text.Trim()) && int.TryParse(textBox4.Text.Trim(), out int temp))
             {
-                Book book = new Book(name, id_Author, the_Path_To_The_File, selectedImagePath, number_Of_Printed_Pages, date_Of_Writing, the_Year_Of_Publishing, isbn, time_To_Read, about_The_Book, age_Rating, 0, App.currentUser.ID_User);
-                db.book.Add(book);
-                db.SaveChanges();
+                number_Of_Printed_Pages = temp;
+            }
 
-                var selectedThemes = LbThemes.SelectedItems.Cast<string>().Where(themeName =>
+            if (!string.IsNullOrEmpty(textBox5.Text.Trim()) && int.TryParse(textBox5.Text.Trim(), out temp))
+            {
+                date_Of_Writing = temp;
+            }
+
+            if (!string.IsNullOrEmpty(textBox6.Text.Trim()) && int.TryParse(textBox6.Text.Trim(), out temp))
+            {
+                the_Year_Of_Publishing = temp;
+            }
+
+            number_Of_Printed_Pages ??= 0;
+            date_Of_Writing ??= 0; 
+            the_Year_Of_Publishing ??= 0; 
+
+            Book book = new Book(name, id_Author, the_Path_To_The_File, selectedImagePath, number_Of_Printed_Pages, date_Of_Writing, the_Year_Of_Publishing, isbn, time_To_Read, about_The_Book, age_Rating, 0, App.currentUser.ID_User);
+            db.book.Add(book);
+            db.SaveChanges();
+
+            var selectedThemes = LbThemes.SelectedItems.Cast<string>().Where(themeName =>
+            {
+                var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));
+                return theme != null;
+            }).ToList();
+
+            // Свяжите книгу с выбранными темами
+            foreach (var themeName in selectedThemes)
+            {
+                var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));
+
+                if (theme != null)
                 {
-                    var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));
-                    return theme != null;
-                }).ToList();
-
-                // Свяжите книгу с выбранными темами
-                foreach (var themeName in selectedThemes)
-                {
-                    var theme = db.theme.FirstOrDefault(t => t.Name.Equals(themeName));
-
-                    if (theme != null)
-                    {
-                        db.book_theme.Add(new Book_Theme { ID_Book = book.Id, ID_Theme = theme.Id });
-                    }
+                    db.book_theme.Add(new Book_Theme { ID_Book = book.Id, ID_Theme = theme.Id });
                 }
+            }
 
-                db.SaveChanges();
+            db.SaveChanges();
 
-                MessageBox.Show("Книга успешно добавлена.");
+            MessageBox.Show("Книга успешно добавлена.");
 
                 WindowBook wBook = new WindowBook();
                 wBook.Show();
                 Close();
-            }
-            else
-            {
-                MessageBox.Show("Введите корректные значения.");
-            }
+
         }
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
         {

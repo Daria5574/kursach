@@ -79,13 +79,13 @@ namespace kursach
             //    context.AddGenre(4, "Психология управления");
             //    context.AddGenre(5, "Литература 20 века");
 
-            //    context.AddTheme("Гражданская позиция",1);
-            //    context.AddTheme("Становление героя",1);
-            //    context.AddTheme("Американская литература",1);
-            //    context.AddTheme("Истории о любви",1);
-            //    context.AddTheme("Проза жизни",1);
-            //    context.AddTheme("Повести",1);
-            //    context.AddTheme("Экранизация",1);//Маленьки женщины, Цветы для Элджернона
+            //    context.AddTheme("Гражданская позиция", 1);
+            //    context.AddTheme("Становление героя", 1);
+            //    context.AddTheme("Американская литература", 1);
+            //    context.AddTheme("Истории о любви", 1);
+            //    context.AddTheme("Проза жизни", 1);
+            //    context.AddTheme("Повести", 1);
+            //    context.AddTheme("Экранизация", 1);//Маленьки женщины, Цветы для Элджернона
 
             //    context.AddTheme("Гражданская позиция", 2);
             //    context.AddTheme("Становление героя", 2);

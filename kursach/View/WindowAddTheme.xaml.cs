@@ -26,6 +26,7 @@ namespace kursach.View
             InitializeComponent();
 
             db = new DatabaseContext();
+            nameUser.Content = App.currentUser.FName;
         }
         private void NavigateToMainPage(object sender, MouseButtonEventArgs e)
         {

@@ -1,7 +1,10 @@
-﻿using kursach.Model;
+﻿using FB2Library;
+using kursach.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 
 namespace kursach.View
@@ -22,6 +26,7 @@ namespace kursach.View
     /// </summary>
     public partial class WindowBookDetails : Window
     {
+        DatabaseContext db = new DatabaseContext();
         public WindowBookDetails(Book currentBook)
         {
             InitializeComponent();
@@ -34,66 +39,100 @@ namespace kursach.View
                 BitmapImage bitmap = new BitmapImage(new Uri(currentBook.Cover));
                 coverBook.Source = bitmap;
             }
-            pagesBook.Content = currentBook.Number_Of_Printed_Pages + " печатных страниц";
-            timeBook.Content = "Время чтения " + currentBook.Time_To_Read;
-            yearBook.Content = currentBook.The_Year_Of_Publishing + " год";
-            ratingBook.Content = currentBook.Age_Rating;
-            aboutBook.Text = currentBook.About_The_Book;
-            using (var db = new DatabaseContext())
+            if (currentBook.Number_Of_Printed_Pages != null && currentBook.Number_Of_Printed_Pages != 0)
             {
-                var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
-                if (book != null)
-                {
-                    authorLabel.Content = book.Author.FName + " " + book.Author.LName;
-                }
+                pagesBook.Content = currentBook.Number_Of_Printed_Pages + " печатных страниц";
+            }
+            else
+            {
+                pagesBook.Visibility = Visibility.Collapsed;
+            }
 
-                var bookWithThemes = db.book_theme
-                    .Include(bt => bt.Theme) // Включаем связанные записи Theme
-                    .Where(bt => bt.ID_Book == currentBook.Id)
-                    .Select(bt => new
-                    {
-                        BookId = bt.ID_Book,
-                        Theme = bt.Theme
-                    })
-                    .ToList();
+            if (!string.IsNullOrEmpty(currentBook.Time_To_Read))
+            {
+                timeBook.Content = "Время чтения " + currentBook.Time_To_Read;
+            }
+            else
+            {
+                timeBook.Visibility = Visibility.Collapsed;
+            }
 
-                if (bookWithThemes != null && bookWithThemes.Count > 0) // Проверяем наличие данных
+            if (currentBook.The_Year_Of_Publishing != null && currentBook.The_Year_Of_Publishing != 0)
+            {
+                yearBook.Content = currentBook.The_Year_Of_Publishing + " год";
+            }
+            else
+            {
+                yearBook.Visibility = Visibility.Collapsed;
+            }
+
+            ratingBook.Content = currentBook.Age_Rating;
+
+            aboutBook.Text = currentBook.About_The_Book;
+
+            if (!string.IsNullOrEmpty(currentBook.About_The_Book))
+            {
+                abBook.Content = "О книге";
+            }
+            else
+            {
+                abBook.Visibility = Visibility.Collapsed;
+            }
+
+
+            var book = db.book.Include(b => b.Author).FirstOrDefault(b => b.Id == currentBook.Id);
+            if (book != null)
+            {
+                authorLabel.Content = book.Author.FName + " " + book.Author.LName;
+            }
+
+            var bookWithThemes = db.book_theme
+                .Include(bt => bt.Theme) // Включаем связанные записи Theme
+                .Where(bt => bt.ID_Book == currentBook.Id)
+                .Select(bt => new
                 {
-                    WrapPanel wrapPanel = new WrapPanel() // Используем WrapPanel для расположения в ряд
+                    BookId = bt.ID_Book,
+                    Theme = bt.Theme
+                })
+                .ToList();
+
+            if (bookWithThemes != null && bookWithThemes.Count > 0)
+            {
+                WrapPanel wrapPanel = new WrapPanel() // WrapPanel - для расположения в ряд
+                {
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(10)
+                };
+
+                foreach (var item in bookWithThemes)
+                {
+                    var theme = item.Theme;
+
+                    Button button = new Button
                     {
-                        Orientation = Orientation.Horizontal, // Горизонтальное расположение элементов
-                        Margin = new Thickness(10)
+                        Content = theme.Name,
+                        Height = 30,
+                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        Margin = new Thickness(5),
+                        Style = (Style)FindResource("themes")
                     };
 
-                    foreach (var item in bookWithThemes)
+                    button.Click += (sender, e) =>
                     {
-                        var theme = item.Theme;
+                        WindowThemeBooks wThBook = new WindowThemeBooks(theme);
+                        wThBook.Show();
+                        Close();
+                    };
 
-                        Button button = new Button
-                        {
-                            Content = theme.Name,
-                            Height = 30,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch, // Растягиваем содержимое по горизонтали
-                            Margin = new Thickness(5), // Добавляем отступы между кнопками
-                            Style = (Style)FindResource("themes")
-                        };
-
-                        // Обработчик события нажатия (добавьте свою логику перехода на страницу)
-                        button.Click += (sender, e) =>
-                        {
-                            // ... (логика перехода на страницу с книгами по теме)
-                        };
-
-                        wrapPanel.Children.Add(button);
-                    }
-
-                    // Добавляем WrapPanel в ItemsControl
-                    itemsControl.Items.Add(wrapPanel);
+                    wrapPanel.Children.Add(button);
                 }
+
+                itemsControl.Items.Add(wrapPanel);
+
             }
             if (currentBook.Is_Favorite == 1)
             {
-                FavoriteButton.Content = "★ :)";
+                FavoriteButton.Content = "★";
                 FavoriteButton.Style = (Style)FindResource("yellow");
             }
             else
@@ -118,7 +157,7 @@ namespace kursach.View
                 // Обновляем стиль и содержимое кнопки в зависимости от Is_Favorite
                 if (currentBook.Is_Favorite == 1)
                 {
-                    FavoriteButton.Content = "★;";
+                    FavoriteButton.Content = "★";
                     FavoriteButton.Style = (Style)FindResource("yellow");
                 }
                 else
@@ -188,5 +227,30 @@ namespace kursach.View
             }
         }
 
+        private async void read_Click(object sender, RoutedEventArgs e)
+        {
+            Book currentBook = (Book)DataContext;
+            string path = currentBook.The_Path_To_The_File;
+            await ReadFB2FileStreamAsync(File.OpenRead(path));
+        }
+        private async Task ReadFB2FileStreamAsync(Stream stream)
+        {
+            // setup
+            var readerSettings = new XmlReaderSettings
+            {
+                DtdProcessing = DtdProcessing.Ignore
+            };
+            var loadSettings = new XmlLoadSettings(readerSettings);
+
+            try
+            {
+                // reading
+                FB2File file = await new FB2Reader().ReadAsync(stream, loadSettings);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(string.Format("Error loading file : {0}", ex.Message));
+            }
+        }
     }
 }

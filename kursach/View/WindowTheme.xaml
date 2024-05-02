@@ -49,7 +49,7 @@
 
             <StackPanel Orientation="Horizontal" Background="#FFFDF0F0" Height="36">
                 <Label Content="Мои темы" FontSize="20" Margin="30,0,0,0" FontFamily="Times New Roman"></Label>
-                <Button Style="{StaticResource menu}" x:Name="author" Margin="470,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
+                <Button Style="{StaticResource menu}" x:Name="author" Margin="480,0,0,0" Content="Авторы" Height="25" Click="author_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="favorite" Margin="10,0,0,0" Content="Избранное" Height="25" Click="favorite_Click"></Button>
                 <Button Style="{StaticResource menu}" x:Name="theme" Margin="10,0,0,0" Content="Темы" Height="25" Click="theme_Click" RenderTransformOrigin="0.563,0.47"></Button>
             </StackPanel>
@@ -57,7 +57,7 @@
             <StackPanel Orientation="Horizontal"  Background="White">
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Добавить" Height="30" Command="{Binding AddBook}" Click="Button_Add_Click"/>
                 <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Редактировать" Height="30" Command="{Binding EditBook}" x:Name="Button_Edit" Click="Button_Edit_Click"/>
-                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}" x:Name="Button_Delete"/>
+                <Button Style="{StaticResource AddEditDelete}" Margin="10,10,5,10" Content="Удалить" Height="30" Command="{Binding DeleteBook}" x:Name="Button_Delete" Click="Button_Delete_Click"/>
             </StackPanel>
             <ListView x:Name="lvMyTheme" Background="#FFFFBB">
                 <ListView.View>

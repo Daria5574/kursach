@@ -125,8 +125,8 @@
         <Label x:Name="ratingBook" Content="Label" HorizontalAlignment="Left" Margin="621,181,0,0" VerticalAlignment="Top"/>
         <Label x:Name="abBook" Content="О книге" FontSize="18" HorizontalAlignment="Left" Margin="33,380,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="aboutBook" FontSize="14" Text="Text" HorizontalAlignment="Left" Margin="33,423,0,0" VerticalAlignment="Top" Height="180" Width="728" TextWrapping="Wrap"/>
-        <ItemsControl Margin="232,256,63,259" x:Name="itemsControl"></ItemsControl>
-        <Button Content="Читать" FontSize="18" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="278,218,0,0" VerticalAlignment="Top" Height="38"/>
+        <ItemsControl Margin="232,256,63,220" x:Name="itemsControl"></ItemsControl>
+        <Button Content="Читать" FontSize="18" Style="{StaticResource read}" HorizontalAlignment="Left" Margin="278,218,0,0" VerticalAlignment="Top" Height="38" x:Name="read" Click="read_Click"/>
         <Button x:Name="FavoriteButton" FontSize="18" Content="★" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top"/>
 
     </Grid>
