@@ -1,5 +1,4 @@
 ﻿using kursach.Model;
-using kursach.ViewModel;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -38,7 +37,6 @@ namespace kursach.View
         {
             InitializeComponent();
             b = selectedBook;
-            var viewModel = new WindowAddBookViewModel();
 
             imageControl.SetBinding(Image.SourceProperty, new Binding("Cover") { Converter = new CoverImageConverter() });
             imageControl.DataContext = b;

@@ -1,5 +1,4 @@
 ﻿using kursach.Model;
-using kursach.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
@@ -34,8 +33,6 @@ namespace kursach.View
         public WindowAddBook()
         {
             InitializeComponent();
-
-            var viewModel = new WindowAddBookViewModel();
 
             db = new DatabaseContext();
 
