@@ -225,25 +225,12 @@ namespace kursach.View
         private async void read_Click(object sender, RoutedEventArgs e)
         {
             Book currentBook = (Book)DataContext;
-            string path = currentBook.The_Path_To_The_File;
-            await ReadFB2FileStreamAsync(File.OpenRead(path));
-        }
-        private async Task ReadFB2FileStreamAsync(Stream stream)
-        {
-            var readerSettings = new XmlReaderSettings
-            {
-                DtdProcessing = DtdProcessing.Ignore
-            };
-            var loadSettings = new XmlLoadSettings(readerSettings);
+           
 
-            try
-            {
-                FB2File file = await new FB2Reader().ReadAsync(stream, loadSettings);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(string.Format("Error loading file : {0}", ex.Message));
-            }
+            WindowReader wAuthor = new WindowReader(currentBook);
+            wAuthor.Show();
+            Close();
         }
+       
     }
 }
